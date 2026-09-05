@@ -46,7 +46,9 @@ software-atom-market/
 │  └─ 05_竞争扫描与空白定位.md
 ├─ spec/             契约规范（机器可读，v0.1 草案）
 │  └─ atom.schema.json
-└─ atoms/            原子库：atoms/ 目录即索引，*.atom.json 即商品
+├─ atoms/            原子库：atoms/ 目录即索引，*.atom.json 即商品
+└─ plugins/
+   └─ dsh-atom-market/  DSH 插件（可封装 npm）：把商店变成 Agent 可逛/可校验/可投稿的工具
 ```
 
 ## Not reinventing the wheel · 与既有生态的分工
@@ -70,7 +72,7 @@ software-atom-market/
 ## Roadmap preview · 路线预告
 
 1. ~~商店闭环 v0.1~~（已完成：spec + 校验脚本 + 投稿流程）
-2. **DSH 插件 `dsh-atom-market`**：向 DeepSeek Harness 的 Agent 暴露 atom_search/read/validate/draft，从本地/github 路径安装（不依赖 npm）
+2. **DSH 插件 `dsh-atom-market`**（骨架已完成）：向 DeepSeek Harness 的 Agent 暴露 atom_search/read/validate/draft；`dsh.bundle` 已声明、可封装 npm，当前从本地/github 路径安装，npm 发布待定
 3. 拼装器 `atom_assemble`：意图 → 检索 → 接线 → 拼装期校验（docs/03 §8）
 4. 上架 dsh 市场（dsh-market / awesome-dsh-plugin，缓步）
 5. 对照实验：粒度 × 人群 × AI 组装成功率（`docs/04`）

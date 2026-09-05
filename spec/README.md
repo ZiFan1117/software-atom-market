@@ -9,7 +9,12 @@
 3. **拼装期即可校验**：input/output 用 JSON Schema 声明 → 两块原子接线前就能做类型/形状检查，而不是运行时才炸（对 UNIX 弱类型文本流的修复）。
 4. **副作用显式声明**：`side_effects` 区分"纯计算原子"与"碰世界的接口原子"，是沙箱与权限策略的依据。
 5. **上架必有验证**：`tests` 提供契约测试样例，`verified` 标记验证状态。
-6. **渐进式披露（skill 式）**：`intent` = 一句话"实现什么"（列表/搜索/卡片层）；`description`（可选，Markdown）= "怎么实现/边界/用法"详情层，只在选中后由 `atom_read` 展开。列表不带详情，避免噪音。
+6. **渐进式披露（skill 式）**：`intent` = 一句话"实现什么"（列表/搜索/卡片层）；`description`（可选，Markdown）= "怎么实现/边界/用法"详情层，只在选中后由 `atom_read` 展开。列表不带详情，避免噪音。详情正文写法见 [`detail-convention.md`](./detail-convention.md)（四节固定结构，含图规范）。
+
+## 文件
+
+- `atom.schema.json` —— manifest 机器可读规范（字段/枚举/校验）。
+- `detail-convention.md` —— `description` 详情正文的人类/AI 可读写法规范（L2）。
 
 ## 术语
 

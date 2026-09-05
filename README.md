@@ -38,12 +38,13 @@ software-atom-market/
 ├─ package.json      本仓工具脚本入口（零 npm 依赖）
 ├─ scripts/
 │  └─ validate.mjs   投稿把关：对照 spec 校验 atoms/（node scripts/validate.mjs）
-├─ docs/             立项与研究文档（论点 · 文献 · 设计 · 竞扫 · 研究空白）
+├─ docs/             立项与研究文档（论点 · 文献 · 设计 · 竞扫 · 研究空白 · 本体笔记）
 │  ├─ 01_核心论点与判据.md
 │  ├─ 02_文献地图与论证证据.md
 │  ├─ 03_技术设计_契约_商店_组装层.md
 │  ├─ 04_研究空白与实验设想.md
-│  └─ 05_竞争扫描与空白定位.md
+│  ├─ 05_竞争扫描与空白定位.md
+│  └─ 06_本体建模与图纸层.md
 ├─ spec/             契约规范（机器可读，v0.1 草案）
 │  └─ atom.schema.json
 └─ atoms/            原子库：atoms/ 目录即索引，*.atom.json 即商品

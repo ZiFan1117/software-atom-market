@@ -12,6 +12,8 @@
 | `money.currency_convert.atom.json` | 把金额换算成目标币种 | capability | network（需汇率） |
 | `mail.send.atom.json` | 发送一封邮件 | capability | email（碰世界） |
 
+> 渐进披露示例：上表的"意图"列就是 `intent`（列表/搜索层，一句话）；`pdf.extract_tables.atom.json` 的 `description` 字段演示了详情层（选中后用 `atom_read` 展开 Markdown 全文）。
+
 ## 三个样例想说明的对比
 
 - `data.csv_to_json` 与 `pdf.extract_tables`：**纯计算原子** —— 可并行、可重试、无权限问题，最像 UNIX filter。

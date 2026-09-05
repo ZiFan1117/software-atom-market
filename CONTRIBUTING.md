@@ -20,7 +20,7 @@
 
 判定尺子：*再拆就得解释"怎么做"了 → 太小；装下两个意图 → 太大。*
 
-另外建议：声明 `side_effects`（是否碰世界）、配 `tests` 样例（`verified:true` 必须带非空 `tests`）。实现代码放在你处，用 `implementation_ref` 指个仓库/包/API 地址。
+另外建议：声明 `side_effects`（是否碰世界）、配 `tests` 样例（`verified:true` 必须带非空 `tests`）、用 `description`（Markdown）写清"怎么实现/何时用/边界"——列表只显示 `intent` 一句话，详情靠 `description` 在选中后展开（skill 式渐进披露，见 `spec/`）。实现代码放在你处，用 `implementation_ref` 指个仓库/包/API 地址。
 
 ## 流程
 

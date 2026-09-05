@@ -23,8 +23,12 @@
     },
     "intent": {
       "type": "string",
-      "description": "用户能一句话说清的意图：'把 X 变成 Y'。给人类阅读、给 AI 语义检索。",
+      "description": "一句话说清'实现什么'（渐进披露第 1 层，用于列表/搜索/卡片）。",
       "minLength": 2
+    },
+    "description": {
+      "type": "string",
+      "description": "详细说明（Markdown，渐进披露第 2 层）：怎么实现、适用/不适用场景、边界、示例用法。只有决定用/读详情时才展开（类似 Agent Skill 的正文）。可选。"
     },
     "tags": {
       "type": "array",

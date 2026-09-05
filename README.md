@@ -35,15 +35,22 @@ software-atom-market/
 ├─ README.md         本页：定位 + 速览
 ├─ LICENSE           MIT
 ├─ CONTRIBUTING.md   如何投稿一个原子（任何人都能）
-├─ docs/             立项与研究文档（论点 · 文献 · 设计 · 研究空白）
+├─ docs/             立项与研究文档（论点 · 文献 · 设计 · 竞扫 · 研究空白）
 │  ├─ 01_核心论点与判据.md
 │  ├─ 02_文献地图与论证证据.md
 │  ├─ 03_技术设计_契约_商店_组装层.md
-│  └─ 04_研究空白与实验设想.md
+│  ├─ 04_研究空白与实验设想.md
+│  └─ 05_竞争扫描与空白定位.md
 ├─ spec/             契约规范（机器可读，v0.1 草案）
 │  └─ atom.schema.json
 └─ atoms/            示例原子（manifest 样例，供投稿参考）
 ```
+
+## Not reinventing the wheel · 与既有生态的分工
+
+- 万级插件的 **DeepSeek Harness 生态**（"一切皆插件"）与 **MCP registry**、Claude Skills、Composio 等证明：共享底座可行、AI 工具层成熟——但它们都是**开发者向**：无语言无关的意图契约、无"验证后上架"闸门、无面向非程序员的组装层。
+- **本项目补的是那个标准层**：intent + 数据契约、capability/primitive 双层货架、"tests → verified"上架闸门、组合回填闭环。
+- 完整竞争扫描与差距表见 [`docs/05`](./docs/05_竞争扫描与空白定位.md)。
 
 ## Status · 状态
 

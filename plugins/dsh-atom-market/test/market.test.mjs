@@ -1,16 +1,23 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { findStoreRoot, readAtoms, searchAtoms, readAtom } from '../lib/store.js'
+import { openStore, findStoreRoot, readAtoms, searchAtoms, readAtom } from '../lib/store.js'
 import { validateManifestText, validateManifestObject } from '../lib/validate.js'
 import { draftAtom } from '../lib/draft.js'
 
-test('store: finds repo atoms and full-text search works', () => {
+test('store: local dir finds repo atoms and full-text search works', () => {
   const root = findStoreRoot()
   assert.ok(root, 'store root resolvable from plugin dir')
   const atoms = readAtoms(root)
   assert.equal(atoms.length, 4)
   const csv = searchAtoms(atoms, { query: 'CSV', limit: 5 })
   assert.ok(csv.some((a) => a.id === 'data.csv_to_json'))
+})
+
+test('store: openStore honors DSH_ATOM_STORE_DIR (local override)', async () => {
+  const root = findStoreRoot()
+  const { records, error } = await openStore({ DSH_ATOM_STORE_DIR: root }).load()
+  assert.equal(error, undefined)
+  assert.equal(records.length, 4)
 })
 
 test('store: read by id returns full manifest', () => {
@@ -33,7 +40,7 @@ test('validate: good manifest passes, bad manifest lists errors', () => {
   assert.ok(bad.errors.some((e) => e.includes('verified')))
 })
 
-test('draft: emits verified:false and投稿 notes; honors custom id', () => {
+test('draft: emits verified:false and notes; honors custom id', () => {
   const d = draftAtom({ intent: '把金额换算成人民币', id: 'money.convert', input: { type: 'object' }, output: { type: 'object' } })
   assert.equal(d.draft.id, 'money.convert')
   assert.equal(d.draft.verified, false)

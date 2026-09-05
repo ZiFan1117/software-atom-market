@@ -16,7 +16,40 @@ export interface AtomRecord extends AtomPublicFields {
   manifest: Record<string, unknown>
 }
 
+export interface LoadResult {
+  records: AtomRecord[]
+  error?: string
+}
+
+export interface StoreEnv {
+  DSH_ATOM_STORE_DIR?: string
+  DSH_ATOM_STORE_OWNER?: string
+  DSH_ATOM_STORE_REPO?: string
+  DSH_ATOM_STORE_BRANCH?: string
+  GITHUB_PERSONAL_ACCESS_TOKEN?: string
+}
+
+export const DEFAULT_OWNER = 'ZiFan1117'
+export const DEFAULT_REPO = 'software-atom-market'
+export const DEFAULT_BRANCH = 'main'
+
 const ATOM_SUFFIX = '.atom.json'
+const CACHE_TTL_MS = 5 * 60 * 1000
+const remoteCache = new Map<string, { at: number; records: AtomRecord[] }>()
+
+function toRecord(manifest: Record<string, unknown>, origin: string): AtomRecord {
+  return {
+    id: typeof manifest.id === 'string' ? manifest.id : '',
+    intent: typeof manifest.intent === 'string' ? manifest.intent : '',
+    layer: typeof manifest.layer === 'string' ? manifest.layer : '',
+    side_effects: typeof manifest.side_effects === 'string' ? manifest.side_effects : undefined,
+    version: typeof manifest.version === 'string' ? manifest.version : '',
+    verified: typeof manifest.verified === 'boolean' ? manifest.verified : undefined,
+    tags: Array.isArray(manifest.tags) ? (manifest.tags as string[]) : undefined,
+    file: origin,
+    manifest,
+  }
+}
 
 export function isStoreRoot(dir: string): boolean {
   const atomsDir = join(dir, 'atoms')
@@ -48,22 +81,90 @@ export function readAtoms(root: string): AtomRecord[] {
     try {
       const manifest = JSON.parse(readFileSync(join(atomsDir, f), 'utf8')) as Record<string, unknown>
       if (typeof manifest.id !== 'string') continue
-      records.push({
-        id: manifest.id,
-        intent: typeof manifest.intent === 'string' ? manifest.intent : '',
-        layer: typeof manifest.layer === 'string' ? manifest.layer : '',
-        side_effects: typeof manifest.side_effects === 'string' ? manifest.side_effects : undefined,
-        version: typeof manifest.version === 'string' ? manifest.version : '',
-        verified: typeof manifest.verified === 'boolean' ? manifest.verified : undefined,
-        tags: Array.isArray(manifest.tags) ? (manifest.tags as string[]) : undefined,
-        file: join(atomsDir, f),
-        manifest,
-      })
+      records.push(toRecord(manifest, join(atomsDir, f)))
     } catch {
-      // skip unparsable entries; validate tool reports them by reading raw text
+      // skip unparsable entries; atom_validate reports content problems separately
     }
   }
   return records
+}
+
+async function loadFromGitHub(env: StoreEnv): Promise<LoadResult> {
+  const owner = env.DSH_ATOM_STORE_OWNER ?? DEFAULT_OWNER
+  const repo = env.DSH_ATOM_STORE_REPO ?? DEFAULT_REPO
+  const branch = env.DSH_ATOM_STORE_BRANCH ?? DEFAULT_BRANCH
+  const key = `gh:${owner}/${repo}/${branch}`
+  const cached = remoteCache.get(key)
+  if (cached && Date.now() - cached.at < CACHE_TTL_MS) {
+    return { records: cached.records }
+  }
+
+  const headers: Record<string, string> = {
+    Accept: 'application/vnd.github+json',
+    'User-Agent': 'dsh-atom-market',
+    'X-GitHub-Api-Version': '2022-11-28',
+  }
+  const token = env.GITHUB_PERSONAL_ACCESS_TOKEN
+  if (token) headers.Authorization = `Bearer ${token}`
+
+  try {
+    const listRes = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/atoms?ref=${branch}`,
+      { headers },
+    )
+    if (!listRes.ok) {
+      const hint = token ? '' : '；如遇 API 限流，可设置 GITHUB_PERSONAL_ACCESS_TOKEN'
+      return {
+        records: [],
+        error: `GitHub 商店目录读取失败 HTTP ${listRes.status}（${owner}/${repo}@${branch}）${hint}`,
+      }
+    }
+    const entries = (await listRes.json()) as Array<{ type: string; name: string }>
+    const files = Array.isArray(entries)
+      ? entries.filter((e) => e.type === 'file' && e.name.endsWith(ATOM_SUFFIX))
+      : []
+    const records: AtomRecord[] = []
+    for (const f of files) {
+      try {
+        const fileRes = await fetch(
+          `https://api.github.com/repos/${owner}/${repo}/contents/atoms/${encodeURIComponent(f.name)}?ref=${branch}`,
+          { headers },
+        )
+        if (!fileRes.ok) continue
+        const fileJson = (await fileRes.json()) as { content?: string; encoding?: string }
+        if (!fileJson.content) continue
+        const text = Buffer.from(fileJson.content, 'base64').toString('utf8')
+        const manifest = JSON.parse(text) as Record<string, unknown>
+        if (typeof manifest.id !== 'string') continue
+        records.push(toRecord(manifest, `github://${owner}/${repo}/${branch}/atoms/${f.name}`))
+      } catch {
+        // skip a single unreadable atom rather than failing the whole store
+      }
+    }
+    remoteCache.set(key, { at: Date.now(), records })
+    return { records }
+  } catch (e) {
+    const message = e instanceof Error ? e.message : String(e)
+    return {
+      records: [],
+      error: `无法访问 GitHub 商店（${message}）；如断网，可用 DSH_ATOM_STORE_DIR 指向本地 atoms 目录临时离线`,
+    }
+  }
+}
+
+export function openStore(env: StoreEnv = process.env): { load: () => Promise<LoadResult> } {
+  if (env.DSH_ATOM_STORE_DIR) {
+    const root = env.DSH_ATOM_STORE_DIR
+    return {
+      async load() {
+        if (!existsSync(join(root, 'atoms'))) {
+          return { records: [], error: `DSH_ATOM_STORE_DIR 指向的目录没有 atoms/：${root}` }
+        }
+        return { records: readAtoms(root) }
+      },
+    }
+  }
+  return { load: () => loadFromGitHub(env) }
 }
 
 export interface ListOptions {

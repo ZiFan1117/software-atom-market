@@ -1,6 +1,6 @@
 import type { Context } from '@deepseek-ai/cordis'
 import { defineTool, type JsonValue } from '@deepseek-ai/dsh-tools'
-import { findStoreRoot, readAtoms, searchAtoms, readAtom } from './store.js'
+import { openStore, searchAtoms, readAtom, type AtomRecord } from './store.js'
 import { validateManifestText } from './validate.js'
 import { draftAtom, type DraftOptions } from './draft.js'
 
@@ -12,12 +12,11 @@ function renderText(value: JsonValue): Array<{ type: 'text'; text: string }> {
 }
 
 export function apply(ctx: Context): void {
-  const root = process.env.DSH_ATOM_STORE_DIR ?? findStoreRoot() ?? process.cwd()
-  const snapshot = () => readAtoms(root)
+  const store = openStore(process.env)
 
   ctx.tools.register(defineTool({
     name: 'atom_search',
-    description: '在 Software Atom Market 商店中按意图/标签/id 检索能力原子，返回公共字段列表；选中后再用 atom_read 读全量契约。',
+    description: '在 Software Atom Market（默认：GitHub 上的软件原子市场仓库）按意图/标签/id 检索能力原子，返回公共字段列表；选中后再用 atom_read 读全量契约。',
     parameters: {
       query: { type: 'string', description: '意图关键词，如 "从 PDF 抽出表格"' },
       layer: { type: 'string', enum: ['capability', 'primitive'], description: '货架层：能力原子 / 实现原语' },
@@ -29,19 +28,21 @@ export function apply(ctx: Context): void {
       render: (_args, value) => renderText(value),
     },
     async execute(args) {
-      const items = searchAtoms(snapshot(), {
+      const { records, error } = await store.load()
+      if (error) return { ok: false, error } as unknown as JsonValue
+      const items = searchAtoms(records, {
         query: args.query,
         layer: args.layer,
         verified: args.verified,
         limit: args.limit,
       })
-      return { count: items.length, items } as unknown as JsonValue
+      return { ok: true, count: items.length, items } as unknown as JsonValue
     },
   }))
 
   ctx.tools.register(defineTool({
     name: 'atom_read',
-    description: '读取商店中某个原子的完整 manifest（含 input/output 数据形状与 tests），用于接线、校验与投稿前检查。',
+    description: '读取商店（默认 GitHub）中某个原子的完整 manifest（含 input/output 数据形状与 tests），用于接线、校验与投稿前检查。',
     parameters: {
       id: { type: 'string', required: true, description: '原子 id，如 pdf.extract_tables' },
     },
@@ -50,9 +51,12 @@ export function apply(ctx: Context): void {
       render: (_args, value) => renderText(value),
     },
     async execute(args) {
-      const rec = readAtom(snapshot(), args.id)
-      if (!rec) return { found: false, id: args.id } as unknown as JsonValue
-      return { found: true, id: rec.id, manifest: rec.manifest } as unknown as JsonValue
+      const { records, error } = await store.load()
+      if (error) return { ok: false, error } as unknown as JsonValue
+      const rec = readAtom(records, args.id)
+      if (!rec) return { ok: false, id: args.id, error: `商店中找不到原子 ${args.id}` } as unknown as JsonValue
+      const publicRec: AtomRecord = rec
+      return { ok: true, id: rec.id, intent: rec.intent, manifest: publicRec.manifest } as unknown as JsonValue
     },
   }))
 

@@ -14,7 +14,12 @@ DSH plugin · Cordis · Everything is a plugin.
 | `atom_validate` | 投稿前按 spec 校验候选 manifest → valid/errors/warnings | 拦下一个缺 input 的坏投稿 |
 | `atom_draft` | 由一句意图起草 `verified:false` 候选 + 投稿步骤 | 为"把金额换算成人民币"生成骨架 |
 
-商店数据源：默认向上查找仓库根目录的 `atoms/*.atom.json`（目录即索引）；可用环境变量 `DSH_ATOM_STORE_DIR` 显式指定。
+商店数据源（**默认 GitHub，无需任何本地配置**）：
+- 默认读取 GitHub 商店仓库 `ZiFan1117/software-atom-market` 的 `atoms/*.atom.json`（目录即索引），带 5 分钟内存缓存；可用 `GITHUB_PERSONAL_ACCESS_TOKEN` 规避 API 限流。
+- 可选覆盖：
+  - `DSH_ATOM_STORE_OWNER` / `DSH_ATOM_STORE_REPO` / `DSH_ATOM_STORE_BRANCH` → 指向其它 GitHub 商店；
+  - `DSH_ATOM_STORE_DIR` → 指向本地 `atoms/` 目录（离线/开发用）。
+- 别的人装这个插件，**不需要设任何环境变量**——装上即用。
 
 ## 安装（本地 / github，不依赖发布 npm）
 

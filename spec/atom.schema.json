@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ZiFan1117/software-atom-market/spec/atom.schema.json",
+  "title": "Atom manifest",
+  "description": "软件原子市场 v0.1 —— 最小能力单元(Atom)的机器可读契约声明。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "layer", "version", "intent", "input", "output"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(\\.[a-z0-9_]+)+$",
+      "description": "全局唯一 ID，形如 pdf.extract_tables（<域>.<动作>）。"
+    },
+    "layer": {
+      "enum": ["capability", "primitive"],
+      "description": "capability=能力原子(与用户一次意图对齐，默认货架)；primitive=实现原语(专家货架)。"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "语义化版本。"
+    },
+    "intent": {
+      "type": "string",
+      "description": "用户能一句话说清的意图：'把 X 变成 Y'。给人类阅读、给 AI 语义检索。",
+      "minLength": 2
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "检索用标签，如 [pdf, table, parse]。"
+    },
+    "input": {
+      "$ref": "#/$defs/io",
+      "description": "输入数据形状(JSON Schema)。required 应列全必填。"
+    },
+    "output": {
+      "$ref": "#/$defs/io",
+      "description": "输出数据形状(JSON Schema)。"
+    },
+    "side_effects": {
+      "enum": ["none", "network", "file", "email", "db", "process"],
+      "description": "none=纯计算原子；其余=碰世界的接口原子，需要权限/沙箱策略。",
+      "default": "none"
+    },
+    "lang": {
+      "type": "string",
+      "description": "实现语言/运行时，如 python、node、wasm、http。对拼装者透明。"
+    },
+    "author": {
+      "type": "string",
+      "description": "投稿者（GitHub 用户名或组织）。"
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "契约测试是否通过、是否可上架（由仓库维护方复核，投稿时置 false）。",
+      "default": false
+    },
+    "implementation_ref": {
+      "type": "string",
+      "description": "实现代码位置，如同仓路径、npm 包、HTTP API 地址。"
+    },
+    "deps": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "依赖的其它 atom id 或实现依赖。"
+    },
+    "tests": {
+      "type": "array",
+      "description": "契约测试样例(输入→期望输出)。上架(verified=true)前必须覆盖。",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["input", "expect"],
+        "properties": {
+          "input": { "description": "与 input schema 匹配的样例输入。" },
+          "expect": { "description": "期望输出或断言。" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "io": {
+      "description": "输入/输出数据形状：允许内联 JSON Schema 子集或指向共享 schema 的引用。",
+      "type": "object",
+      "minProperties": 1
+    }
+  }
+}

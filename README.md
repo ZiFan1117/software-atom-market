@@ -46,14 +46,14 @@ software-atom-market/
 │  └─ 05_竞争扫描与空白定位.md
 ├─ spec/             契约规范（机器可读，v0.1 草案）
 │  └─ atom.schema.json
-├─ atoms/            原子库：atoms/ 目录即索引，*.atom.json 即商品
-└─ plugins/
-   └─ dsh-atom-market/  DSH 插件（可封装 npm）：把商店变成 Agent 可逛/可校验/可投稿的工具
+└─ atoms/            原子库：atoms/ 目录即索引，*.atom.json 即商品
 ```
+
+> DSH 消费端插件已独立成仓：[`ZiFan1117/dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market)（`dsh-plugin` 社区插件，v0.1.1）——本仓只负责**商店本身**（契约 + 原子 + 收录）。
 
 ## 用起来什么样（零配置）
 
-- **给 Agent/人用商店**：把 `dsh-atom-market` 装进 DeepSeek Harness（npm 发布后 `dsh plugin add dsh-atom-market`），Agent 即可用 `atom_search / atom_read / atom_validate / atom_draft` 逛店、读契约、验投稿、起草新原子。**默认直连本 GitHub 商店（`atoms/` 目录即索引），任何人装上即用、无需本地路径或其它配置**；可选覆盖 `DSH_ATOM_STORE_DIR`(离线)、`DSH_ATOM_STORE_OWNER/REPO/BRANCH`(换源)、`GITHUB_PERSONAL_ACCESS_TOKEN`(免限流)。
+- **给 Agent/人用商店**：把 [`dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market) 装进 DeepSeek Harness（`dsh plugin add github:ZiFan1117/dsh-atom-market`，npm 发布后 `dsh plugin add dsh-atom-market`），Agent 即可用 `atom_search / atom_read / atom_validate / atom_draft` 逛店、读契约、验投稿、起草新原子。**插件默认直连本 GitHub 商店（`atoms/` 目录即索引），任何人装上即用、无需本地路径或其它配置**；可选覆盖 `DSH_ATOM_STORE_DIR`(离线)、`DSH_ATOM_STORE_OWNER/REPO/BRANCH`(换源)、`GITHUB_PERSONAL_ACCESS_TOKEN`(免限流)。
 - **给人投稿**：见 [CONTRIBUTING.md](./CONTRIBUTING.md) —— PR 加一个 JSON，merge 即收录。商店永远指向这个仓库的最新提交。
 
 ## Not reinventing the wheel · 与既有生态的分工
@@ -64,7 +64,7 @@ software-atom-market/
 
 ## Status · 状态
 
-- **阶段：商店闭环 v0.1 + DSH 插件 v0.1.1** —— 可投稿（PR 收 `atoms/*.atom.json`）、可把关（`node scripts/validate.mjs`）、可检索（`atoms/` 目录即索引）；插件默认直连本 GitHub 商店，零配置装进 DeepSeek Harness。实现一律走 `implementation_ref` 外链，本仓不收代码。
+- **阶段：商店闭环 v0.1** —— 可投稿（PR 收 `atoms/*.atom.json`）、可把关（`node scripts/validate.mjs`）、可检索（`atoms/` 目录即索引）。DSH 消费端插件已独立为社区插件 [`dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market)（v0.1.1，默认直连本 GitHub 商店）。实现一律走 `implementation_ref` 外链，本仓不收代码。
 - **本轮明确不做**：npm 发布/CI、独立索引文件、商业化后台。
 - 中文文档为主，英文摘要为辅（正在完善）。
 
@@ -77,7 +77,7 @@ software-atom-market/
 ## Roadmap preview · 路线预告
 
 1. ~~商店闭环 v0.1~~（已完成：spec + 校验脚本 + 投稿流程）
-2. **DSH 插件 `dsh-atom-market`**（v0.1.1 已完成）：atom_search/read/validate/draft；**默认数据源 = 本 GitHub 商店，零配置**；`dsh.bundle` 已声明、可封装 npm，npm 发布待定
+2. ~~DSH 插件 `dsh-atom-market`~~（v0.1.1，已独立成仓 [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market)，按 DSH 社区插件方式维护；npm 发布待定）
 3. 拼装器 `atom_assemble`：意图 → 检索 → 接线 → 拼装期校验（docs/03 §8）
 4. 上架 dsh 市场（dsh-market / awesome-dsh-plugin，缓步）
 5. 对照实验：粒度 × 人群 × AI 组装成功率（`docs/04`）

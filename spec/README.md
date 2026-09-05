@@ -14,11 +14,17 @@
 
 | 词 | 含义 |
 | --- | --- |
-| Atom | 最小能力单元 = 实现 + manifest(契约) + 测试 |
+| Atom | 最小能力单元：manifest（契约）+ tests + 实现。本仓**只收 manifest 与 tests**，实现经 `implementation_ref` 外链 |
 | manifest | 原子的机器可读声明（本 schema 描述的对象） |
 | layer | `capability` 能力原子（给所有人）/ `primitive` 实现原语（给造原子者） |
 | Wire | 原子间的一条数据连接（上游 output → 下游 input） |
 | Graph | 一组原子 + 一组 Wire（拼出来的"程序"，见 `docs/03`） |
+
+## 中央仓收什么（v0 边界）
+
+- **只收 manifest**。`atoms/*.atom.json` 是唯一权威源，`atoms/` 目录本身即索引——v0 **不维护**独立的 `registry/index.json`（检索时扫目录即可；将来出现性能/分发需要再生成）。
+- 实现代码**不入库**，用 `implementation_ref` 指向作者自己的仓库/npm 包/API（见根目录 `CONTRIBUTING.md`）。
+- 收录 = PR 合入 `atoms/`；合入前跑 `node scripts/validate.mjs`（零依赖，对照本 schema 规则）。
 
 ## 最小合法 manifest
 

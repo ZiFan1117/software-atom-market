@@ -34,7 +34,10 @@
 software-atom-market/
 ├─ README.md         本页：定位 + 速览
 ├─ LICENSE           MIT
-├─ CONTRIBUTING.md   如何投稿一个原子（任何人都能）
+├─ CONTRIBUTING.md   如何投稿一个原子（任何人都能，只收 manifest）
+├─ package.json      本仓工具脚本入口（零 npm 依赖）
+├─ scripts/
+│  └─ validate.mjs   投稿把关：对照 spec 校验 atoms/（node scripts/validate.mjs）
 ├─ docs/             立项与研究文档（论点 · 文献 · 设计 · 竞扫 · 研究空白）
 │  ├─ 01_核心论点与判据.md
 │  ├─ 02_文献地图与论证证据.md
@@ -43,7 +46,7 @@ software-atom-market/
 │  └─ 05_竞争扫描与空白定位.md
 ├─ spec/             契约规范（机器可读，v0.1 草案）
 │  └─ atom.schema.json
-└─ atoms/            示例原子（manifest 样例，供投稿参考）
+└─ atoms/            原子库：atoms/ 目录即索引，*.atom.json 即商品
 ```
 
 ## Not reinventing the wheel · 与既有生态的分工
@@ -54,22 +57,23 @@ software-atom-market/
 
 ## Status · 状态
 
-- **阶段**：立项/规范草案（v0.1）。契约 schema 与示例原子为**清单级样例，尚无实现与 Runner**。
-- **路线图**：见 `docs/04_研究空白与实验设想.md` §6；技术闭环见 `docs/03` §8 MVP。
+- **阶段：商店闭环 v0.1** —— 可投稿（PR 收 `atoms/*.atom.json`）、可把关（`node scripts/validate.mjs`）、可检索（`atoms/` 目录即索引）。契约 schema 与示例原子为清单级样例；实现一律走 `implementation_ref` 外链，本仓不收代码。
+- **本轮明确不做**：DSH 插件（下一任务）、npm/CI、独立索引文件、商业化后台。
 - 中文文档为主，英文摘要为辅（正在完善）。
 
 ## Contribute · 参与
 
-欢迎任何人投稿"你解决的问题"——把能力封装成一个 Atom 提交上来，让全世界复用，而不是各自重写。
+欢迎任何人投稿"你解决的问题"——封装成一个 Atom（一个 JSON）提交上来，让全世界（含 AI/Agent）复用，而不是各自重写。
 
 投稿前请读 [CONTRIBUTING.md](./CONTRIBUTING.md) 与 [契约规范 spec/](./spec/README.md)。
 
 ## Roadmap preview · 路线预告
 
-1. 契约规范定稿（含类型化拼装期校验）
-2. Registry + Runner MVP（Python）
-3. LLM 装配工：意图 → 检索 → 接线 → 校验 → 执行
-4. 对照实验：粒度 × 人群 × AI 组装成功率（`docs/04`）
+1. ~~商店闭环 v0.1~~（已完成：spec + 校验脚本 + 投稿流程）
+2. **DSH 插件 `dsh-atom-market`**：向 DeepSeek Harness 的 Agent 暴露 atom_search/read/validate/draft，从本地/github 路径安装（不依赖 npm）
+3. 拼装器 `atom_assemble`：意图 → 检索 → 接线 → 拼装期校验（docs/03 §8）
+4. 上架 dsh 市场（dsh-market / awesome-dsh-plugin，缓步）
+5. 对照实验：粒度 × 人群 × AI 组装成功率（`docs/04`）
 
 ## License
 

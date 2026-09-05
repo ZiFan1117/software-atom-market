@@ -1,0 +1,13 @@
+{
+  "name": "software-atom-market",
+  "version": "0.1.0",
+  "private": true,
+  "description": "软件原子市场：共享、可组装、带类型化契约的最小能力单元(Atom) 的中央商店与规范。",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

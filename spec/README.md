@@ -26,7 +26,7 @@
 | manifest | 原子的机器可读声明（本 schema 描述的对象） |
 | layer | `capability` 能力原子（给所有人）/ `primitive` 实现原语（给造原子者） |
 | Wire | 原子间的一条数据连接（上游 output → 下游 input） |
-| Graph | 一组原子 + 一组 Wire（拼出来的"程序"，见 `docs/03`） |
+| Graph | 一组原子 + 一组 Wire（拼出来的"程序"，见 `docs/design/03`） |
 
 ## 中央仓收什么（v0 边界）
 

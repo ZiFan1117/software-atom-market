@@ -11,7 +11,7 @@
 | ② 协议标准 | **原子公约（Manifest）** | 每个原子必须声明：意图 + 输入/输出 + 副作用 + 详情(四节四图) + 版本 |
 | ③ 运行检测 | **机器闸** | 结构硬检（含 description 四图），**机器过即收录，无人工评审** |
 
-深挖：方法/扩展草案 → `docs/09`；协议正文 → `SPEC.md`；设计细节 → `docs/03`。
+深挖：方法/扩展草案 → `docs/design/09`；协议正文 → `SPEC.md`；设计细节 → `docs/design/03`。
 
 ## 架构（一图流）
 
@@ -66,8 +66,8 @@ software-atom-market/
 ## Status · 状态
 
 - **已落地**：契约 v0.2（机器闸·四节四图硬检）｜ 联邦纯指针索引 + 每日发现 ｜ 目录自动生成 ｜ 插件 v0.1.2（索引搜索 + 实时回源读取）。`spec`、`scripts`、`atoms` 均为可验证闭环。
-- **研究中（非生产承诺）**：原子组装器 `atom_assemble`、DbC 前置/后置/不变量（v0.3+）、对照实验——见 `docs/04`、`docs/09`。
-- **与既有生态**：不重复 MCP/Claude Skills/Composio 等"开发者向工具层"；本仓补的是"意图契约 + 机器闸 + 人人/Agent 可拼"的标准层（竞对分析见 `docs/05`）。
+- **研究中（非生产承诺）**：原子组装器 `atom_assemble`、DbC 前置/后置/不变量（v0.3+）、对照实验——见 `docs/research/04`、`docs/design/09`。
+- **与既有生态**：不重复 MCP/Claude Skills/Composio 等"开发者向工具层"；本仓补的是"意图契约 + 机器闸 + 人人/Agent 可拼"的标准层（竞对分析见 `docs/research/05`）。
 
 ## Roadmap · 路线
 

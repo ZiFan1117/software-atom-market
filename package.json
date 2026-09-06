@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate.mjs",
+    "validate-file": "node scripts/validate-single.mjs",
     "generate": "node scripts/generate-catalog.mjs",
     "discover": "node scripts/discover.mjs"
   },

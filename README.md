@@ -32,12 +32,14 @@
 
 ```
 software-atom-market/
+├─ SPEC.md           协议标准入口：一个原子怎么写 + 机器怎么验（v0.2）
 ├─ README.md         本页：定位 + 速览
 ├─ LICENSE           MIT
-├─ CONTRIBUTING.md   如何投稿一个原子（任何人都能，只收 manifest）
+├─ CONTRIBUTING.md   投稿两通道（联邦 topic / 中央 PR），机器闸无人工
 ├─ package.json      本仓工具脚本入口（零 npm 依赖）
 ├─ scripts/
-│  ├─ validate.mjs   投稿把关：对照 spec 校验 atoms/（含 description 四节四图硬检）
+│  ├─ validate.mjs   目录级校验（atoms/，含 description 四节四图硬检）
+│  ├─ validate-single.mjs  投稿者单文件自检（curl 可独立跑）
 │  ├─ generate-catalog.mjs  生成 CATALOG.md（中央 + 社区两层）
 │  └─ discover.mjs   联邦发现：扫描 topic:software-atom → 校验 → 纯指针 registry/index.json
 ├─ CATALOG.md        原子目录（Central + Community，由生成器产出，勿手编）

@@ -3,12 +3,14 @@
   "layer": "capability",
   "version": "1.0.0",
   "intent": "把金额换算成目标币种",
+  "description": "## 它做什么\n\n按实时汇率把一笔金额从源币种换算成目标币种，返回换算结果、所用汇率与汇率日期。\n\n## 怎么实现\n\n数据流转：\n```mermaid\nflowchart LR\n  A[amount/from/to] --> B[校验入参] --> C[取汇率] --> D[amount * rate] --> E[结果+rate_date]\n```\n\n模块分解：\n```mermaid\nclassDiagram\n  class Validator { check(amount, from, to) }\n  class RateService { fetch(from,to) }\n  class Converter { convert(amount,rate) }\n  Validator --> RateService --> Converter\n```\n\n交互时序（需联网取汇率）：\n```mermaid\nsequenceDiagram\n  participant U as 用户/上游\n  participant A as money.currency_convert\n  participant FX as 汇率源\n  U->>A: amount/from/to\n  A->>FX: 请求汇率\n  FX-->>A: rate + date\n  A-->>U: converted + rate\n```\n\n调用图：\n```mermaid\ngraph TD\n  main --> validateInput\n  main --> fetchRate\n  fetchRate --> normalizeRate\n  main --> compute\n```\n\n## 何时用 / 何时不用\n\n- 适用：按当前汇率做一次性换算（发票、报表、预算）。\n- 不适用：需要离线可用的固定汇率（可用 rate_source 指自有源）；需要历史汇率回测时需另接行情原子。\n\n## 示例\n\n输入：`{amount:100, from:USD, to:CNY}` → 输出：`{converted:<金额>, rate:<汇率>, rate_date:<日期>}`",
   "tags": ["money", "currency", "fx"],
   "category": "money",
   "side_effects": "network",
   "lang": "python",
   "author": "example",
   "verified": false,
+  "implementation_ref": "example: python package; runner 尚未实现",
   "input": {
     "type": "object",
     "required": ["amount", "from", "to"],
@@ -16,11 +18,7 @@
       "amount": { "type": "number", "description": "金额（正数）" },
       "from": { "type": "string", "description": "ISO 4217 源币种，如 USD" },
       "to": { "type": "string", "description": "ISO 4217 目标币种，如 CNY" },
-      "rate_source": {
-        "type": "string",
-        "description": "可选，指定汇率源；默认官方实时汇率",
-        "default": "auto"
-      }
+      "rate_source": { "type": "string", "description": "可选，指定汇率源；默认官方实时汇率", "default": "auto" }
     }
   },
   "output": {

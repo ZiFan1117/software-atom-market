@@ -1,66 +1,86 @@
-# Detail Convention · 原子详情正文规范（渐进披露 L2）
+# Detail Convention · 原子详情正文规范（v0.2 · 机器闸）
 
-> 用途：规定 atom 的 `description`（Markdown 详情）怎么写，让每个原子的"怎么实现"长得一致、可被人与 AI 一致消费。
-> 依据：Agent Skills 的 SKILL.md 约定（frontmatter=一句话，正文=详情）+ Diátaxis 文档规范的压缩四节。图用 Mermaid/DOT 文本。
+> `description` **必填**，且必须包含四节标题 + 四张 Mermaid 图。全部为**机器硬检**：校验通过 = 收录，**无人工评审**。
+> 机器验"完整 + 合法 + 有内容"；图与实现是否一致的"真实性"由作者署名负责，将来由 `tests` 真跑逐步兑现。
 
-## 分层关系
+## 必交内容（机器逐项检查，缺一即不收录）
 
-| 层 | 载体 | 说什么 |
+`description`（Markdown 字符串）必须同时满足：
+
+### A. 四节标题（各出现一次，顺序不限）
+
+1. `## 它做什么`
+2. `## 怎么实现`
+3. `## 何时用`（标题可续写，如 `## 何时用 / 何时不用`）
+4. `## 示例`
+
+### B. 四张 Mermaid 图（各有内容、语法合法，写在哪节都行，建议集中在"怎么实现"下）
+
+| 要素 | 必须出现的代码块 | 说明 |
 | --- | --- | --- |
-| L1 列表 | manifest `intent`（等同 skill frontmatter 的 description） | 一句"它实现什么" |
-| L2 详情 | manifest `description`（本文规范） | "怎么实现/边界/用法" |
-| L3 图纸 | `implementation_ref` 指向作者仓里的 mermaid/dot/img | 流程图/调用图/依赖图 |
+| 数据流转 | ```mermaid 块内含 `flowchart` | 输入 → 处理 → 输出 |
+| 接口/模块分解 | ```mermaid 块内含 `classDiagram`（或 `block-beta`） | 内部分几个模块/职责 |
+| 交互时序 | ```mermaid 块内含 `sequenceDiagram` | 与外部/原子的调用时序（无外部也要画：用户→原子→结果） |
+| 调用图 | 任一代码块内含 `digraph` 或 `graph TD/LR/RL/BT` | 函数/步骤级调用关系 |
 
-## description 必须包含的四节（按序）
+### C. 反例（机器会打回）
 
-详情正文是 Markdown 字符串，**至少**含以下三个标题，顺序固定：
+- description 缺失 / 为空
+- 四节标题缺任何一个
+- 四张图缺任何一张 / 图块为空 / mermaid 头名写错（如写 ```mermaid 却写 UML 文本）
+- 伪造装饰图不算"机器可验"，但**一致性由作者负责**：货架有使用数据与报错通道，假图会被用户自然淘汰
 
-1. `## 它做什么` —— 用一两句补足 `intent`（intent 是列表短句，这里可展开到"输入会变成什么输出"）。
-2. `## 怎么实现` —— 关键思路/算法/步骤，写到"另一个开发者或 Agent 能据此判断是否适用、可否拆装"的程度。不贴整段代码（代码在 `implementation_ref`），可给伪代码。
-3. `## 何时用 / 何时不用` —— 适用场景、不适用场景（可含"需要先接某原子"，如"扫描件需先 OCR"）。
-4. `## 示例` —— 至少一个 input → output 的简短例子（不必重复 manifest 的 `tests`，给可读示例即可）。
+## 校验器
 
-可选第 5 节 `## 图`：内嵌文本图（mermaid 的 flowchart/sequence/class；dot 的 digraph 画调用/依赖），为渐进披露 L3 的轻量版。
+- 商店：`scripts/validate.mjs`（含 `scripts/validate-lib.mjs` 的 `checkDescription`）
+- 插件：`dsh-atom-market` 的 `atom_validate`
+- 联邦层：发现器对每个外部 manifest 跑同样检查，不过 = 不收录（`registry/index.json` 只记通过者）
 
-## 模板（投稿照抄）
+## 模板
 
 ```markdown
 ## 它做什么
 
-<补足 intent：把 X 变成 Y，顺带说明输出形态。>
+一句话展开：把 X 变成 Y。
 
 ## 怎么实现
 
-<关键思路与步骤，可选伪代码。>
+数据流转：
+```mermaid
+flowchart LR
+  A[输入] --> B[步骤1] --> C[输出]
+```
+
+模块分解：
+```mermaid
+classDiagram
+  class A { 职责 }
+  class B { 职责 }
+  A --> B
+```
+
+交互时序：
+```mermaid
+sequenceDiagram
+  participant U as 用户/上游
+  participant A as 原子
+  U->>A: 输入
+  A-->>U: 输出
+```
+
+调用图：
+```mermaid
+graph TD
+  main --> f1
+  main --> f2
+```
 
 ## 何时用 / 何时不用
 
 - 适用：…
-- 不适用：…（如：扫描件需先接 OCR 原子）
+- 不适用：…
 
 ## 示例
 
 输入：… → 输出：…
-
-## 图   <!-- 可选 -->
-
-```mermaid
-flowchart LR
-  A[PDF] --> B[定位表格区] --> C[重建网格] --> D[结构化行]
 ```
-```
-
-## 校验
-
-- 校验器对 `description` 只做类型检查（必须是 string）。
-- 维护者复核收录时，按本节标题清单检查；缺 1-3 中任意一节 → 打回补写。
-- 机器可后续加"标题齐全性"的 lint（软警告），本轮不做。
-
-## 与 Agent Skills 的对应
-
-| Agent Skill | 原子 |
-| --- | --- |
-| frontmatter `name` | `id` |
-| frontmatter `description` | `intent`（列表一句话） |
-| SKILL.md 正文 | `description`（本规范四节） |
-| skill 引用的资源/脚本 | `implementation_ref` + 可选图纸 |

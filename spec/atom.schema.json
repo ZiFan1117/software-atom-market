@@ -5,7 +5,7 @@
   "description": "软件原子市场 v0.1 —— 最小能力单元(Atom)的机器可读契约声明。",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "layer", "version", "intent", "input", "output"],
+  "required": ["id", "layer", "version", "intent", "description", "input", "output"],
   "properties": {
     "id": {
       "type": "string",
@@ -28,7 +28,7 @@
     },
     "description": {
       "type": "string",
-      "description": "详细说明（Markdown，渐进披露第 2 层）：怎么实现、适用/不适用场景、边界、示例用法。只有决定用/读详情时才展开（类似 Agent Skill 的正文）。可选。"
+      "description": "必填。Markdown 详情（v0.2 机器闸）：四节标题 + 四张 Mermaid 图（数据流转/模块分解/时序/调用图），细则见 detail-convention.md；机器缺一即不收录。"
     },
     "tags": {
       "type": "array",

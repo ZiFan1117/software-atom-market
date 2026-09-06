@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "generate": "node scripts/generate-catalog.mjs"
+    "generate": "node scripts/generate-catalog.mjs",
+    "discover": "node scripts/discover.mjs"
   },
   "engines": {
     "node": ">=18"

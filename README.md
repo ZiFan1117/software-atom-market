@@ -37,9 +37,12 @@ software-atom-market/
 ├─ CONTRIBUTING.md   如何投稿一个原子（任何人都能，只收 manifest）
 ├─ package.json      本仓工具脚本入口（零 npm 依赖）
 ├─ scripts/
-│  ├─ validate.mjs   投稿把关：对照 spec 校验 atoms/（node scripts/validate.mjs）
-│  └─ generate-catalog.mjs  从 atoms/ 生成 CATALOG.md（npm run generate）
-├─ CATALOG.md        原子目录（按 category 分组，由生成器产出，勿手编）
+│  ├─ validate.mjs   投稿把关：对照 spec 校验 atoms/（含 description 四节四图硬检）
+│  ├─ generate-catalog.mjs  生成 CATALOG.md（中央 + 社区两层）
+│  └─ discover.mjs   联邦发现：扫描 topic:software-atom → 校验 → 纯指针 registry/index.json
+├─ CATALOG.md        原子目录（Central + Community，由生成器产出，勿手编）
+├─ registry/
+│  └─ index.json     联邦索引（外部仓指针，无他人代码/manifest，由 discover 产出）
 ├─ docs/             立项与研究文档（叙事 · 论点 · 文献 · 设计 · 竞扫 · 空白 · 本体笔记）
 │  ├─ 00_对外叙事_我们要说的几件事.md
 │  ├─ 01_核心论点与判据.md
@@ -58,8 +61,9 @@ software-atom-market/
 
 ## 用起来什么样（零配置）
 
-- **给 Agent/人用商店**：把 [`dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market) 装进 DeepSeek Harness（`dsh plugin add github:ZiFan1117/dsh-atom-market`，npm 已放弃——GitHub 直装，`lib/` 随仓无需构建），Agent 即可用 `atom_search / atom_read / atom_validate / atom_draft` 逛店、读契约、验投稿、起草新原子。**插件默认直连本 GitHub 商店（`atoms/` 目录即索引），任何人装上即用、无需本地路径或其它配置**；可选覆盖 `DSH_ATOM_STORE_DIR`(离线)、`DSH_ATOM_STORE_OWNER/REPO/BRANCH`(换源)、`GITHUB_PERSONAL_ACCESS_TOKEN`(免限流)。
-- **给人投稿**：见 [CONTRIBUTING.md](./CONTRIBUTING.md) —— PR 加一个 JSON，merge 即收录。商店永远指向这个仓库的最新提交。
+- **给 Agent/人用商店**：把 [`dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market) 装进 DeepSeek Harness（`dsh plugin add github:ZiFan1117/dsh-atom-market`，npm 已放弃——GitHub 直装，`lib/` 随仓无需构建），Agent 即可用 `atom_search / atom_read / atom_validate / atom_draft` 逛店、读契约、验投稿、起草新原子。**插件默认直读本 GitHub 商店的 `registry/index.json`（联邦索引）+ 实时拉取来源仓 manifest**，任何人装上即用、零配置。
+- **机器闸，无人工评审**：manifest 的 `description` 必含四节 + 四张 Mermaid 图，`validate` 机器硬检；**机器过即收录**。
+- **给人投稿（两种都行）**：A. 联邦——自己的公开仓放 `atom.json`（或 `atoms/*.atom.json`）并打 topic `software-atom`，每日自动被发现；B. 中央——PR 一个 manifest 进本仓。详见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
 
 ## Not reinventing the wheel · 与既有生态的分工
 

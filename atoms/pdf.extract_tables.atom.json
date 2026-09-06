@@ -3,7 +3,7 @@
   "layer": "capability",
   "version": "1.2.0",
   "intent": "从 PDF 中抽出所有表格",
-  "description": "## 它做什么\n\n把 PDF 中版式规整的表格识别出来，输出为「表头 + 行」的结构化 JSON 数组；下游原子（换算/汇总/入库）可直接消费。\n\n## 怎么实现\n\n1. 逐页做文本层行定位，启发式圈出候选表格区；\n2. 对每个候选区重建单元格网格，行按 y、列按 x 排序；\n3. 复杂嵌套表格尽力展平，无法无损的单元格保留原始文本原样输出（不猜测）。\n\n纯文本层处理，无外部服务；失败静默：无表格返回空数组。\n\n## 何时用 / 何时不用\n\n- 适用：报表、账单、论文数据表等文本层完整的版式化表格。\n- 不适用：扫描件/纯图片表格（无文本层，需先接 OCR 原子）；版式极乱的发票（结果需人工抽检）。\n\n## 示例\n\n输入：单页含一张两列表格的 PDF（表头 name,age）→ 输出：`[{headers:[\"name\",\"age\"],rows:[[\"alice\",\"30\"],[\"bob\",\"25\"]],page:1}]`\n\n## 图\n\n```mermaid\nflowchart LR\n  A[PDF 字节] --> B[定位候选表格区] --> C[重建单元格网格] --> D[结构化 rows/headers]\n```",
+  "description": "## 它做什么\n\n把 PDF 中版式规整的表格识别出来，输出为「表头 + 行」的结构化 JSON 数组；下游原子（换算/汇总/入库）可直接消费。\n\n## 怎么实现\n\n数据流转：\n```mermaid\nflowchart LR\n  A[PDF 字节] --> B[候选表格区定位] --> C[单元格网格重建] --> D[rows/headers]\n```\n\n模块分解：\n```mermaid\nclassDiagram\n  class Locator { locate(page) }\n  class GridBuilder { rebuild(region) }\n  class Normalizer { flatten(cell) }\n  Locator --> GridBuilder --> Normalizer\n```\n\n交互时序：\n```mermaid\nsequenceDiagram\n  participant U as 用户/上游\n  participant A as pdf.extract_tables\n  U->>A: pdf_bytes + page_range\n  A-->>U: 表格数组（无表返回空）\n```\n\n调用图：\n```mermaid\ngraph TD\n  extract --> walkPages\n  walkPages --> locateRegions\n  locateRegions --> rebuildGrid\n  rebuildGrid --> emitRows\n```\n\n## 何时用 / 何时不用\n\n- 适用：报表、账单、论文数据表等文本层完整的版式化表格。\n- 不适用：扫描件/纯图片表格（无文本层，需先接 OCR 原子）；版式极乱的发票（结果需人工抽检）。\n\n## 示例\n\n输入：单页含一张两列表格的 PDF（表头 name,age）→ 输出：`[{headers:[name,age],rows:[[alice,30],[bob,25]],page:1}]`",
   "tags": ["pdf", "table", "parse"],
   "category": "document",
   "side_effects": "none",
@@ -36,17 +36,8 @@
       "required": ["headers", "rows"],
       "properties": {
         "page": { "type": "integer" },
-        "headers": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "rows": {
-          "type": "array",
-          "items": {
-            "type": "array",
-            "items": { "type": "string" }
-          }
-        }
+        "headers": { "type": "array", "items": { "type": "string" } },
+        "rows": { "type": "array", "items": { "type": "array", "items": { "type": "string" } } }
       }
     }
   },

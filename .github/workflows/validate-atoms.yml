@@ -1,0 +1,17 @@
+name: validate-atoms
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths: ['atoms/**', 'spec/**', 'scripts/**']
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: 机器校验（字段 + description 四节四图硬检）
+        run: node scripts/validate.mjs

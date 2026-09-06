@@ -3,25 +3,20 @@
   "layer": "capability",
   "version": "1.0.0",
   "intent": "发送一封邮件",
+  "description": "## 它做什么\n\n把 to/cc/subject/正文与可选附件交给发件账号，完成一封邮件投递并返回 message_id。\n\n## 怎么实现\n\n数据流转：\n```mermaid\nflowchart LR\n  A[to/subject/body] --> B[组装 MIME] --> C[连接 SMTP] --> D[投递] --> E[message_id]\n```\n\n模块分解：\n```mermaid\nclassDiagram\n  class MimeBuilder { build(mail) }\n  class SmtpClient { send(msg) }\n  class Attachment { encode(file) }\n  MimeBuilder --> Attachment\n  SmtpClient --> MimeBuilder\n```\n\n交互时序（碰世界：email）：\n```mermaid\nsequenceDiagram\n  participant U as 用户/上游\n  participant A as mail.send\n  participant S as SMTP\n  U->>A: to/subject/body/attachments\n  A->>S: MAIL FROM / RCPT / DATA\n  S-->>A: 250 OK\n  A-->>U: message_id + sent_at\n```\n\n调用图：\n```mermaid\ngraph TD\n  send --> buildMime\n  send --> connectSmtp\n  buildMime --> encodeAttachment\n  connectSmtp --> deliver\n```\n\n## 何时用 / 何时不用\n\n- 适用：通知、报表送达、带附件的自动邮件。\n- 不适用：需要阅读收件箱（那是另一类能力）；大批量营销邮件请走专门服务（否则易被限流）。\n\n## 示例\n\n输入：`{to:[you@example.com], subject:hi, body_text:hello}` → 输出：`{message_id:<id>, sent_at:<时间>}`",
   "tags": ["mail", "email", "notify"],
   "category": "comms",
   "side_effects": "email",
   "lang": "python",
   "author": "example",
   "verified": false,
+  "implementation_ref": "example: python package; runner 尚未实现",
   "input": {
     "type": "object",
     "required": ["to", "subject"],
     "properties": {
-      "to": {
-        "type": "array",
-        "items": { "type": "string", "format": "email" },
-        "description": "收件人"
-      },
-      "cc": {
-        "type": "array",
-        "items": { "type": "string", "format": "email" }
-      },
+      "to": { "type": "array", "items": { "type": "string", "format": "email" }, "description": "收件人" },
+      "cc": { "type": "array", "items": { "type": "string", "format": "email" } },
       "subject": { "type": "string" },
       "body_text": { "type": "string", "description": "纯文本正文" },
       "body_html": { "type": "string", "description": "可选，HTML 正文" },
@@ -32,19 +27,12 @@
           "required": ["filename", "content"],
           "properties": {
             "filename": { "type": "string" },
-            "content": {
-              "type": "string",
-              "contentEncoding": "base64",
-              "description": "文件内容"
-            },
+            "content": { "type": "string", "contentEncoding": "base64", "description": "文件内容" },
             "mime": { "type": "string" }
           }
         }
       },
-      "account_ref": {
-        "type": "string",
-        "description": "发件账号引用（密钥不放 manifest，运行时注入）"
-      }
+      "account_ref": { "type": "string", "description": "发件账号引用（密钥不进 manifest）" }
     }
   },
   "output": {

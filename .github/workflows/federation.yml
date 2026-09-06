@@ -1,0 +1,30 @@
+name: federation
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: 联邦发现 + 生成目录
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          GITHUB_TOKEN="$GITHUB_TOKEN" node scripts/discover.mjs --write
+          node scripts/generate-catalog.mjs
+      - name: 有变更则提交
+        run: |
+          git config user.name "software-atom-market[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registry CATALOG.md
+          git diff --cached --quiet || git commit -m "chore(federation): refresh community index & catalog [skip ci]"
+          git push origin HEAD:main

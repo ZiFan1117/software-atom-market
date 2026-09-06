@@ -38,7 +38,8 @@ software-atom-market/
 ├─ package.json      本仓工具脚本入口（零 npm 依赖）
 ├─ scripts/
 │  └─ validate.mjs   投稿把关：对照 spec 校验 atoms/（node scripts/validate.mjs）
-├─ docs/             立项与研究文档（论点 · 文献 · 设计 · 竞扫 · 研究空白 · 本体笔记）
+├─ docs/             立项与研究文档（叙事 · 论点 · 文献 · 设计 · 竞扫 · 空白 · 本体笔记）
+│  ├─ 00_对外叙事_我们要说的几件事.md
 │  ├─ 01_核心论点与判据.md
 │  ├─ 02_文献地图与论证证据.md
 │  ├─ 03_技术设计_契约_商店_组装层.md

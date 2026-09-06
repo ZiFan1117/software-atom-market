@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-09-06T06:23:37.352Z",
+  "topic": "software-atom",
+  "count": 4,
+  "atoms": [
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/data.csv_to_json.atom.json",
+      "id": "data.csv_to_json",
+      "intent": "把 CSV 文本转成 JSON 数组",
+      "layer": "capability",
+      "category": "data",
+      "side_effects": "none",
+      "version": "1.0.0",
+      "verified": false,
+      "updated_at": "2026-09-06T06:23:30Z"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/mail.send.atom.json",
+      "id": "mail.send",
+      "intent": "发送一封邮件",
+      "layer": "capability",
+      "category": "comms",
+      "side_effects": "email",
+      "version": "1.0.0",
+      "verified": false,
+      "updated_at": "2026-09-06T06:23:30Z"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/money.currency_convert.atom.json",
+      "id": "money.currency_convert",
+      "intent": "把金额换算成目标币种",
+      "layer": "capability",
+      "category": "money",
+      "side_effects": "network",
+      "version": "1.0.0",
+      "verified": false,
+      "updated_at": "2026-09-06T06:23:30Z"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/pdf.extract_tables.atom.json",
+      "id": "pdf.extract_tables",
+      "intent": "从 PDF 中抽出所有表格",
+      "layer": "capability",
+      "category": "document",
+      "side_effects": "none",
+      "version": "1.2.0",
+      "verified": false,
+      "updated_at": "2026-09-06T06:23:30Z"
+    }
+  ]
+}

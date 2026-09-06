@@ -14,7 +14,9 @@
 ## 文件
 
 - `atom.schema.json` —— manifest 机器可读规范（字段/枚举/校验）。
-- `detail-convention.md` —— `description` 详情正文的人类/AI 可读写法规范（L2）。
+- `detail-convention.md` —— `description` 详情正文规范（四节 + 四图，机器硬检）。
+- `FEDERATION.md` —— 联邦聚合约定（topic: software-atom，纯指针索引）。
+- 协议总入口：[`../SPEC.md`](../SPEC.md)（怎么写 + 机器怎么验 + 参与）。
 
 ## 术语
 

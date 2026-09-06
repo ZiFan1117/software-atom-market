@@ -1,99 +1,83 @@
 # Software Atom Market · 软件原子市场
 
-> 让 AI 与世界共享的**最小能力单元（Atom）**：不再让 AI 一遍遍逐行生成代码，而是从一座全球共享、带类型化契约的原子商店里**选砖、接线、组装**。
+> 让 AI 与世界共享**最小能力单元（Atom）**：停止让 AI 一遍遍重写同一段代码，改为从一座带契约、可拼接的原子市场里**选砖、接线、组装**。
+> A shared, contract-typed marketplace of software atoms for agents and humans to compose — instead of regenerate.
 
-> A shared marketplace of **software atoms** — composable, verified, minimal capability units. Stop asking AI to regenerate the same code a thousand times; instead let it pick, wire, and assemble from one shared, contract-typed store.
+## 我们要干的事（三件套）
 
-## Why · 为什么
+| | 事 | 一句话 |
+| --- | --- | --- |
+| ① 拆分方法 | **单意图原子性** | 一个原子 = 能一句话说清、不含实现细节的最小能力；再大就拆、再小就合 |
+| ② 协议标准 | **原子公约（Manifest）** | 每个原子必须声明：意图 + 输入/输出 + 副作用 + 详情(四节四图) + 版本 |
+| ③ 运行检测 | **机器闸** | 结构硬检（含 description 四图），**机器过即收录，无人工评审** |
 
-让大模型逐行"生成"代码有三个系统性问题：
+深挖：方法/扩展草案 → `docs/09`；协议正文 → `SPEC.md`；设计细节 → `docs/03`。
 
-1. **即兴发挥，质量不可控** — 同一件事每次生成结果都不一样，bug 随规模放大，难以审查维护。
-2. **全世界重复造同一段代码** — 每次生成都是无记忆的重新发明；代码克隆研究已证明人类生态本就在大量复制。
-3. **编程壁垒没有消失** — 使用者的价值被困在"描述实现"，而不是"表达意图"。
+## 架构（一图流）
 
-软件原子市场的回答：
+```mermaid
+flowchart LR
+  A[作者：公开仓放 atom.json/atoms/*] -- 打 topic: software-atom --> D{联邦发现器}
+  B[作者：PR 一个 manifest] -- 进本仓 atoms/ --> C{中央 CI 机器闸}
+  D -- 校验通过 --> R[registry/index.json 纯指针]
+  C -- 校验通过 --> A2[atoms/ 中央策展]
+  R --> CAT[CATALOG.md]
+  A2 --> CAT
+  CAT --> P[DSH 插件 dsh-atom-market]
+  P --> S1[atom_search 逛·一句话]
+  P --> S2[atom_read 读全貌·实时拉来源仓]
+  P --> S3[atom_validate 投稿自检]
+```
+> 别人的代码/manifest 永不在本仓落盘——`registry/` 只存指针，读取实时回源。
 
-- 能力以 **Atom（原子）** 为单位沉淀：黑盒封装，接口统一为 **意图(intent) + 输入数据 + 输出数据**；
-- **造原子**（少数程序员/验证者）与**拼原子**（所有人 + AI）分离；
-- AI 的角色从"代码生成器"变成"选砖 + 接线的胶水"——它产出**接线图**，不产出实现代码。
+## 快速开始（按角色）
 
-## The minimal unit · 最小颗粒是什么
+- **我是使用者（Agent/人）** → 装 [`dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market)：`dsh plugin add github:ZiFan1117/dsh-atom-market`，然后用 `atom_search` / `atom_read`。零配置。
+- **我想发布一个原子** → 读 [`CONTRIBUTING.md`](./CONTRIBUTING.md)：你的公开仓放 `atom.json`（或 `atoms/*.atom.json`）+ 打 topic `software-atom`，机器每日自动发现；想先自检用 `validate-single`（见 [`SPEC.md`](./SPEC.md) §3）。
+- **我想读懂协议** → 先读 [`SPEC.md`](./SPEC.md)（怎么写 + 机器怎么验），再看 [`spec/`](./spec/README.md) 三件（schema / 详情规范 / 联邦约定）。
+- **我想了解思考与缘起** → [`docs/README.md`](./docs/README.md) 分类索引。
 
-不是更小的代码函数，而是**与用户一次意图对齐、带统一类型化契约、可独立验证的黑盒能力块**。
-
-判定尺子：*再拆就要解释"怎么做"了 = 太小；一个原子装下两个意图 = 太大。*
-
-组合自由度来自**接线图拓扑**，可靠性来自**契约与验证**，都不来自碎片化程度。
-
-> 知识谱系一句话：这是 UNIX 管道哲学的重生——把 stdin/stdout 的弱类型文本流升级为**可机器校验、可被大模型检索的类型化契约**，让大模型当那个过去只有专家能当的"胶水"。
-
-## What's here · 目录
+## 仓库地图（标注：✍️ 人工维护 · ⚙️ 机器生成 · 👀 先读）
 
 ```
 software-atom-market/
-├─ SPEC.md           协议标准入口：一个原子怎么写 + 机器怎么验（v0.2）
-├─ README.md         本页：定位 + 速览
-├─ LICENSE           MIT
-├─ CONTRIBUTING.md   投稿两通道（联邦 topic / 中央 PR），机器闸无人工
-├─ package.json      本仓工具脚本入口（零 npm 依赖）
-├─ scripts/
-│  ├─ validate.mjs   目录级校验（atoms/，含 description 四节四图硬检）
-│  ├─ validate-single.mjs  投稿者单文件自检（curl 可独立跑）
-│  ├─ generate-catalog.mjs  生成 CATALOG.md（中央 + 社区两层）
-│  └─ discover.mjs   联邦发现：扫描 topic:software-atom → 校验 → 纯指针 registry/index.json
-├─ CATALOG.md        原子目录（Central + Community，由生成器产出，勿手编）
-├─ registry/
-│  └─ index.json     联邦索引（外部仓指针，无他人代码/manifest，由 discover 产出）
-├─ docs/             立项与研究文档（叙事 · 论点 · 文献 · 设计 · 竞扫 · 空白 · 本体笔记）
-│  ├─ 00_对外叙事_我们要说的几件事.md
-│  ├─ 01_核心论点与判据.md
-│  ├─ 02_文献地图与论证证据.md
-│  ├─ 03_技术设计_契约_商店_组装层.md
-│  ├─ 04_研究空白与实验设想.md
-│  ├─ 05_竞争扫描与空白定位.md
-│  ├─ 06_本体建模与图纸层.md
-│  ├─ 07_当前问题与开放困惑.md   研究/设计层开放问题（运维进度只在本地，不进仓）
-│  └─ 09_原子公约草案_三件套.md   三件套+单意图原子性+DbC 扩展草案（v0.3+）
-├─ spec/             契约规范（机器可读，v0.1 草案）
-│  └─ atom.schema.json
-└─ atoms/            原子库：atoms/ 目录即索引，*.atom.json 即商品
+├─ README.md            👀 本页（前门）
+├─ SPEC.md              👀 协议标准（新朋友先读）
+├─ CONTRIBUTING.md      👀 怎么加入（两通道）
+├─ LICENSE              MIT
+├─ package.json         ✍️ 本仓脚本入口（零 npm 依赖）
+├─ spec/                ✍️ 规范三件（机器+人读）
+│  ├─ atom.schema.json       manifest 字段/枚举
+│  ├─ detail-convention.md   description 怎么写（四节四图）
+│  ├─ FEDERATION.md          topic 联邦约定
+│  └─ README.md              规范索引
+├─ atoms/               ✍️ 中央策展原子（*.atom.json）
+├─ registry/index.json  ⚙️ 联邦索引（纯指针；discover 产出，勿手编）
+├─ CATALOG.md           ⚙️ 中央+社区目录（generate 产出，勿手编）
+├─ scripts/             ✍️ 机器实现（校验/生成/发现）
+│  ├─ validate.mjs           目录级校验
+│  ├─ validate-single.mjs    投稿者单文件自检
+│  ├─ generate-catalog.mjs   生成 CATALOG
+│  └─ discover.mjs           联邦发现 → registry/index.json
+├─ .github/workflows/   ⚙️ validate-atoms(PR) · federation(每日)
+└─ docs/                ✍️ 思考与研究（见 docs/README.md 分类）
 ```
-
-> DSH 消费端插件已独立成仓：[`ZiFan1117/dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market)（`dsh-plugin` 社区插件，v0.1.1）——本仓只负责**商店本身**（契约 + 原子 + 收录）。
-
-## 用起来什么样（零配置）
-
-- **给 Agent/人用商店**：把 [`dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market) 装进 DeepSeek Harness（`dsh plugin add github:ZiFan1117/dsh-atom-market`，npm 已放弃——GitHub 直装，`lib/` 随仓无需构建），Agent 即可用 `atom_search / atom_read / atom_validate / atom_draft` 逛店、读契约、验投稿、起草新原子。**插件默认直读本 GitHub 商店的 `registry/index.json`（联邦索引）+ 实时拉取来源仓 manifest**，任何人装上即用、零配置。
-- **机器闸，无人工评审**：manifest 的 `description` 必含四节 + 四张 Mermaid 图，`validate` 机器硬检；**机器过即收录**。
-- **给人投稿（两种都行）**：A. 联邦——自己的公开仓放 `atom.json`（或 `atoms/*.atom.json`）并打 topic `software-atom`，每日自动被发现；B. 中央——PR 一个 manifest 进本仓。详见 [CONTRIBUTING.md](./CONTRIBUTING.md)。
-
-## Not reinventing the wheel · 与既有生态的分工
-
-- 万级插件的 **DeepSeek Harness 生态**（"一切皆插件"）与 **MCP registry**、Claude Skills、Composio 等证明：共享底座可行、AI 工具层成熟——但它们都是**开发者向**：无语言无关的意图契约、无"验证后上架"闸门、无面向非程序员的组装层。
-- **本项目补的是那个标准层**：intent + 数据契约、capability/primitive 双层货架、"tests → verified"上架闸门、组合回填闭环。
-- 完整竞争扫描与差距表见 [`docs/05`](./docs/05_竞争扫描与空白定位.md)。
 
 ## Status · 状态
 
-- **阶段：商店闭环 v0.1** —— 可投稿（PR 收 `atoms/*.atom.json`）、可把关（`node scripts/validate.mjs`）、可检索（`atoms/` 目录即索引）。DSH 消费端插件已独立为社区插件 [`dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market)（v0.1.1，默认直连本 GitHub 商店）。实现一律走 `implementation_ref` 外链，本仓不收代码。
-- **本轮明确不做**：npm 发布/CI、独立索引文件、商业化后台。
-- 中文文档为主，英文摘要为辅（正在完善）。
+- **已落地**：契约 v0.2（机器闸·四节四图硬检）｜ 联邦纯指针索引 + 每日发现 ｜ 目录自动生成 ｜ 插件 v0.1.2（索引搜索 + 实时回源读取）。`spec`、`scripts`、`atoms` 均为可验证闭环。
+- **研究中（非生产承诺）**：原子组装器 `atom_assemble`、DbC 前置/后置/不变量（v0.3+）、对照实验——见 `docs/04`、`docs/09`。
+- **与既有生态**：不重复 MCP/Claude Skills/Composio 等"开发者向工具层"；本仓补的是"意图契约 + 机器闸 + 人人/Agent 可拼"的标准层（竞对分析见 `docs/05`）。
 
-## Contribute · 参与
+## Roadmap · 路线
 
-欢迎任何人投稿"你解决的问题"——封装成一个 Atom（一个 JSON）提交上来，让全世界（含 AI/Agent）复用，而不是各自重写。
-
-投稿前请读 [CONTRIBUTING.md](./CONTRIBUTING.md) 与 [契约规范 spec/](./spec/README.md)。
-
-## Roadmap preview · 路线预告
-
-1. ~~商店闭环 v0.1~~（已完成：spec + 校验脚本 + 投稿流程）
-2. ~~DSH 插件 `dsh-atom-market`~~（v0.1.1，已独立成仓 [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market)，按 DSH 社区插件方式维护；npm 发布已放弃，走 GitHub 直装）
-3. 拼装器 `atom_assemble`：意图 → 检索 → 接线 → 拼装期校验（docs/03 §8）
-4. 上架 dsh 市场（dsh-market / awesome-dsh-plugin，缓步）
-5. 对照实验：粒度 × 人群 × AI 组装成功率（`docs/04`）
+1. ~~商店闭环 + 联邦 + 机器闸~~（完成）
+2. ~~DSH 插件 v0.1.2~~（完成，[独立仓](https://github.com/ZiFan1117/dsh-atom-market)）
+3. 组装器 `atom_assemble`（意图 → 检索 → 接线 → 拼装期校验）
+4. DbC 断言字段（前置/后置/不变量，随 Runner 落地，v0.3+）
+5. 收录官方 dsh 列表（PR #4460 已提，缓步）
+6. 对照实验：粒度 × 人群 × AI 组装成功率
 
 ## License
 
-MIT © ZiFan1117. 投稿原子默认以 MIT 授权进入公共库（详见 CONTRIBUTING）。
+MIT © ZiFan1117. 投稿 manifest 默认以 MIT 进入公共库（详见 CONTRIBUTING）。

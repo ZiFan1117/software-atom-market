@@ -35,6 +35,10 @@
       "items": { "type": "string" },
       "description": "检索用标签，如 [pdf, table, parse]。"
     },
+    "category": {
+      "enum": ["data", "document", "money", "comms", "ai", "web", "storage", "code", "automation", "other"],
+      "description": "主题分类（仿 awesome 分类体系）：data/dataset 处理、document 文档、money 金额、comms 通信、ai、web、storage、code、automation、other。CATALOG.md 按它分组。"
+    },
     "input": {
       "$ref": "#/$defs/io",
       "description": "输入数据形状(JSON Schema)。required 应列全必填。"

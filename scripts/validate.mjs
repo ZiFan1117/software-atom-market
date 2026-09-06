@@ -7,8 +7,9 @@ const atomsDir = process.argv[2] || join(__dirname, '..', 'atoms')
 
 const LAYERS = ['capability', 'primitive']
 const SIDE_EFFECTS = ['none', 'network', 'file', 'email', 'db', 'process']
+const CATEGORIES = ['data', 'document', 'money', 'comms', 'ai', 'web', 'storage', 'code', 'automation', 'other']
 const ALLOWED_TOP_KEYS = new Set([
-  'id', 'layer', 'version', 'intent', 'description', 'tags', 'input', 'output',
+  'id', 'layer', 'version', 'intent', 'description', 'tags', 'category', 'input', 'output',
   'side_effects', 'lang', 'author', 'verified', 'implementation_ref', 'deps', 'tests',
 ])
 const ID_RE = /^[a-z0-9]+(\.[a-z0-9_]+)+$/
@@ -58,6 +59,12 @@ function checkManifest(file, m, errors, warnings) {
   if ('side_effects' in m) {
     if (!SIDE_EFFECTS.includes(m.side_effects)) {
       errors.push(`${where('side_effects')}: 必须是 ${SIDE_EFFECTS.join(' / ')} 之一`)
+    }
+  }
+
+  if ('category' in m) {
+    if (!CATEGORIES.includes(m.category)) {
+      errors.push(`${where('category')}: 必须是 ${CATEGORIES.join(' / ')} 之一`)
     }
   }
 

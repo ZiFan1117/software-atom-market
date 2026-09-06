@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "intent": "发送一封邮件",
   "tags": ["mail", "email", "notify"],
+  "category": "comms",
   "side_effects": "email",
   "lang": "python",
   "author": "example",

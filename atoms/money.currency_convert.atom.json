@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "intent": "把金额换算成目标币种",
   "tags": ["money", "currency", "fx"],
+  "category": "money",
   "side_effects": "network",
   "lang": "python",
   "author": "example",

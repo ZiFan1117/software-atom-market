@@ -25,14 +25,15 @@
 ## 流程
 
 1. **看样例**：`atoms/` 里的几个 `.atom.json` 照着写；字段规则见 `spec/atom.schema.json` 与 `docs/03`。
-2. **本地自检**（唯一必要的工具，零依赖）：
+2. **本地自检 + 生成目录**（唯一必要的工具，零依赖）：
 
    ```sh
-   node scripts/validate.mjs
+   node scripts/validate.mjs     # 结构校验，无 [ERR ] 才继续
+   npm run generate              # 从 atoms/ 重新生成 CATALOG.md（按 category 分组）
    ```
 
-   对着你加的 manifest 跑通、无 `[ERR ]` 再提交。
-3. **开 PR**：fork 本仓 → 加一个 `atoms/<id>.atom.json`（`<id>` 如 `pdf.extract_tables`，文件名必须等于 `id + ".atom.json"`）→ PR。合并即收录。
+   把更新后的 `CATALOG.md` 一起提交。
+3. **开 PR**：fork 本仓 → 加一个 `atoms/<id>.atom.json`（`<id>` 如 `pdf.extract_tables`，文件名必须等于 `id + ".atom.json"`，`category` 取合法枚举）→ PR（会自动带投稿自查清单模板）。合并即收录。
    - 只是想讨论/占位某个意图，还没写 manifest → 开 **Issue**，标题建议 `[atom] 一句话意图`。
 4. **收录后**：维护者复核语义（是否"一次意图"、命名是否合理）后 merge；`verified` 是否置真由维护者根据契约测试样例评估。**merge 那一刻它就被全世界（含 AI/Agent）搜得到**——`atoms/` 目录即索引，无需其它步骤。
 

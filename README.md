@@ -37,7 +37,9 @@ software-atom-market/
 ├─ CONTRIBUTING.md   如何投稿一个原子（任何人都能，只收 manifest）
 ├─ package.json      本仓工具脚本入口（零 npm 依赖）
 ├─ scripts/
-│  └─ validate.mjs   投稿把关：对照 spec 校验 atoms/（node scripts/validate.mjs）
+│  ├─ validate.mjs   投稿把关：对照 spec 校验 atoms/（node scripts/validate.mjs）
+│  └─ generate-catalog.mjs  从 atoms/ 生成 CATALOG.md（npm run generate）
+├─ CATALOG.md        原子目录（按 category 分组，由生成器产出，勿手编）
 ├─ docs/             立项与研究文档（叙事 · 论点 · 文献 · 设计 · 竞扫 · 空白 · 本体笔记）
 │  ├─ 00_对外叙事_我们要说的几件事.md
 │  ├─ 01_核心论点与判据.md

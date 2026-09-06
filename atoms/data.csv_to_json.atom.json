@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "intent": "把 CSV 文本转成 JSON 数组",
   "tags": ["csv", "json", "parse"],
+  "category": "data",
   "side_effects": "none",
   "lang": "python",
   "author": "example",

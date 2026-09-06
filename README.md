@@ -56,7 +56,7 @@ software-atom-market/
 
 ## 用起来什么样（零配置）
 
-- **给 Agent/人用商店**：把 [`dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market) 装进 DeepSeek Harness（`dsh plugin add github:ZiFan1117/dsh-atom-market`，npm 发布后 `dsh plugin add dsh-atom-market`），Agent 即可用 `atom_search / atom_read / atom_validate / atom_draft` 逛店、读契约、验投稿、起草新原子。**插件默认直连本 GitHub 商店（`atoms/` 目录即索引），任何人装上即用、无需本地路径或其它配置**；可选覆盖 `DSH_ATOM_STORE_DIR`(离线)、`DSH_ATOM_STORE_OWNER/REPO/BRANCH`(换源)、`GITHUB_PERSONAL_ACCESS_TOKEN`(免限流)。
+- **给 Agent/人用商店**：把 [`dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market) 装进 DeepSeek Harness（`dsh plugin add github:ZiFan1117/dsh-atom-market`，npm 已放弃——GitHub 直装，`lib/` 随仓无需构建），Agent 即可用 `atom_search / atom_read / atom_validate / atom_draft` 逛店、读契约、验投稿、起草新原子。**插件默认直连本 GitHub 商店（`atoms/` 目录即索引），任何人装上即用、无需本地路径或其它配置**；可选覆盖 `DSH_ATOM_STORE_DIR`(离线)、`DSH_ATOM_STORE_OWNER/REPO/BRANCH`(换源)、`GITHUB_PERSONAL_ACCESS_TOKEN`(免限流)。
 - **给人投稿**：见 [CONTRIBUTING.md](./CONTRIBUTING.md) —— PR 加一个 JSON，merge 即收录。商店永远指向这个仓库的最新提交。
 
 ## Not reinventing the wheel · 与既有生态的分工
@@ -80,7 +80,7 @@ software-atom-market/
 ## Roadmap preview · 路线预告
 
 1. ~~商店闭环 v0.1~~（已完成：spec + 校验脚本 + 投稿流程）
-2. ~~DSH 插件 `dsh-atom-market`~~（v0.1.1，已独立成仓 [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market)，按 DSH 社区插件方式维护；npm 发布待定）
+2. ~~DSH 插件 `dsh-atom-market`~~（v0.1.1，已独立成仓 [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market)，按 DSH 社区插件方式维护；npm 发布已放弃，走 GitHub 直装）
 3. 拼装器 `atom_assemble`：意图 → 检索 → 接线 → 拼装期校验（docs/03 §8）
 4. 上架 dsh 市场（dsh-market / awesome-dsh-plugin，缓步）
 5. 对照实验：粒度 × 人群 × AI 组装成功率（`docs/04`）

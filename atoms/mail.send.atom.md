@@ -9,9 +9,9 @@ tags: ["mail","email","notify"]
 category: comms
 side_effects: email
 lang: python
-author: example
+author: ZiFan1117
 verified: false
-implementation_ref: "example: python package; runner 尚未实现"
+implementation_ref: "central sample manifest (no runner); federated implementation target: mail.send"
 input: {"type":"object","required":["to","subject"],"properties":{"to":{"type":"array","items":{"type":"string","format":"email"},"description":"收件人"},"cc":{"type":"array","items":{"type":"string","format":"email"}},"subject":{"type":"string"},"body_text":{"type":"string","description":"纯文本正文"},"body_html":{"type":"string","description":"可选，HTML 正文"},"attachments":{"type":"array","items":{"type":"object","required":["filename","content"],"properties":{"filename":{"type":"string"},"content":{"type":"string","contentEncoding":"base64","description":"文件内容"},"mime":{"type":"string"}}}},"account_ref":{"type":"string","description":"发件账号引用（密钥不进 manifest）"}}}
 output: {"type":"object","required":["message_id"],"properties":{"message_id":{"type":"string"},"sent_at":{"type":"string","format":"date-time"}}}
 tests: [{"input":{"to":["you@example.com"],"subject":"hi","body_text":"hello"},"expect":{"type":"object","required":["message_id"]}}]

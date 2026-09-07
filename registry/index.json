@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T06:23:37.352Z",
+  "generated_at": "2026-09-07T03:05:02.908Z",
   "topic": "software-atom",
   "count": 4,
   "atoms": [
@@ -13,7 +13,7 @@
       "side_effects": "none",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-06T06:23:30Z"
+      "updated_at": "2026-09-06T06:38:32Z"
     },
     {
       "repo": "ZiFan1117/software-atom-market",
@@ -25,7 +25,7 @@
       "side_effects": "email",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-06T06:23:30Z"
+      "updated_at": "2026-09-06T06:38:32Z"
     },
     {
       "repo": "ZiFan1117/software-atom-market",
@@ -37,7 +37,7 @@
       "side_effects": "network",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-06T06:23:30Z"
+      "updated_at": "2026-09-06T06:38:32Z"
     },
     {
       "repo": "ZiFan1117/software-atom-market",
@@ -49,7 +49,7 @@
       "side_effects": "none",
       "version": "1.2.0",
       "verified": false,
-      "updated_at": "2026-09-06T06:23:30Z"
+      "updated_at": "2026-09-06T06:38:32Z"
     }
   ]
 }

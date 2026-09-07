@@ -6,30 +6,31 @@
 
 ## 方式 A：联邦（推荐，三步）
 
-1. 在你自己（公开）的仓库放 manifest：
-   - 单个：仓库根目录 `atom.json`
-   - 多个：`atoms/*.atom.json`
+1. 在你自己（公开）的仓库放原子文档（v0.3 `<id>.atom.md`；旧 v0.2 `atom.json` 仍兼容）：
+   - 单个：仓库根目录 `atom.md`
+   - 多个：`atoms/*.atom.md`
 2. 给仓库打 topic：**`software-atom`**
 3. 完成。我们的发现器每日扫描，**机器校验通过即收录**进 `registry/index.json` 与 `CATALOG.md`；不过就给错误清单。
 
 ## 方式 B：中央 PR（可选）
 
-1. 按样例在 `atoms/<id>.atom.json` 写 manifest
+1. 按样例在 `atoms/<id>.atom.md` 写原子文档
 2. 本地 `node scripts/validate.mjs` 全过（自动 PR 检查也会跑同一个脚本）
 3. 改动 `atoms/` 后运行 `npm run generate` 并把 `CATALOG.md` 一起提交
 4. 开 PR；**机器绿 = 合并即收录**，无人工评审
 
-## manifest 必填与硬规则（A/B 一致）
+## 必填与硬规则（A/B 一致）
 
 | 字段 | 规则 |
 | --- | --- |
-| `id` | `domain.verb` 形；文件名 = `id + ".atom.json"`（中央） |
+| `id` | `domain.verb` 形；文件名 = `id + ".atom.md"`（中央） |
 | `layer` | `capability` / `primitive` |
 | `version` | 语义化版本 |
 | `intent` | 一句"实现什么"（列表/搜索层） |
-| `description` | **必填**：四节标题（它做什么/怎么实现/何时用/示例）+ **四张 Mermaid 图**（数据流转 `flowchart`、模块分解 `classDiagram`、交互时序 `sequenceDiagram`、调用图 `graph`/`digraph`）——细则与模板见 [`spec/detail-convention.md`](./spec/detail-convention.md) |
-| `input` / `output` | 非空数据形状（JSON-Schema 子集） |
-| `side_effects` | 推荐：none / network / file / email / db / process |
+| 正文本体 | = `description`，**必填**：四节标题（它做什么/怎么实现/何时用/示例）+ **四张 Mermaid 图**（数据流转 `flowchart`、模块分解 `classDiagram`、交互时序 `sequenceDiagram`、调用图 `graph`/`digraph`）——细则与模板见 [`spec/detail-convention.md`](./spec/detail-convention.md) |
+| `input` / `output` | 非空数据形状（JSON-Schema 子集，frontmatter 内 JSON 内联） |
+
+> 文档形态：`---` YAML frontmatter（含 `id/layer/version/intent/input/output/…`）+ `---` 之后的正文本体（四节四图）。
 
 机器校验 = 字段齐全 + description 四节四图 + 格式合法。**机器过就收录；没有人工评审。**
 

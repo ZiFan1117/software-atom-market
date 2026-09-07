@@ -6,8 +6,8 @@
 ## 作者参与（三步，零 PR）
 
 1. 在你的公开仓库放 manifest：
-   - 单原子：仓库根目录放 `atom.json`
-   - 多原子：仓库里建 `atoms/` 目录，放 `*.atom.json`
+   - 单原子：仓库根目录放 `atom.md`（旧式 `atom.json` 亦兼容）
+   - 多原子：仓库里建 `atoms/` 目录，放 `*.atom.md`
 2. manifest 按 [`atom.schema.json`](./atom.schema.json) 写；`description` 必含四节 + 四张 Mermaid 图（见 [`detail-convention.md`](./detail-convention.md)）
 3. 给仓库打 topic：**`software-atom`**
 
@@ -15,7 +15,7 @@
 ```sh
 curl -O https://raw.githubusercontent.com/ZiFan1117/software-atom-market/main/scripts/validate-lib.mjs
 curl -O https://raw.githubusercontent.com/ZiFan1117/software-atom-market/main/scripts/validate-single.mjs
-node validate-single.mjs atom.json
+node validate-single.mjs atom.md
 ```
 
 完成。发现器定期搜索 `topic:software-atom`，拉取并校验 manifest，通过者进入 `registry/index.json`（纯指针）与 `CATALOG.md`。
@@ -25,7 +25,7 @@ node validate-single.mjs atom.json
 | 项 | 约定 |
 | --- | --- |
 | 聚合 topic | `software-atom`（仓库必须公开） |
-| manifest 位置 | 根目录 `atom.json`，或 `atoms/*.atom.json` |
+| manifest 位置 | 根目录 `atom.md`，或 `atoms/*.atom.md`（旧式 `atom.json` 兼容） |
 | 校验 | 字段 + `description` 四节四图，机器硬检（与中央一致） |
 | 收录 | 机器通过 = 收录；不过 = 记录错误、不入目录 |
 | 内容 | 只存指针（repo/path/摘要），他人 manifest/代码不进本仓 |

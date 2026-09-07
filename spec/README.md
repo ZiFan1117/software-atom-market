@@ -30,21 +30,26 @@
 
 ## 中央仓收什么（v0 边界）
 
-- **只收 manifest**。`atoms/*.atom.json` 是唯一权威源，`atoms/` 目录本身即索引——v0 **不维护**独立的 `registry/index.json`（检索时扫目录即可；将来出现性能/分发需要再生成）。
+- **只收原子文档**。`atoms/*.atom.md`（YAML frontmatter + 正文）为 v0.3 权威源；旧式 `*.atom.json` 兼容。`registry/index.json`（纯指针）由 `discover`/维护者生成。
 - 实现代码**不入库**，用 `implementation_ref` 指向作者自己的仓库/npm 包/API（见根目录 `CONTRIBUTING.md`）。
 - 收录 = PR 合入 `atoms/`；合入前跑 `node scripts/validate.mjs`（零依赖，对照本 schema 规则）。
 
-## 最小合法 manifest
+## 最小合法原子（v0.3 文档式）
 
-```json
-{
-  "id": "domain.verb",
-  "layer": "capability",
-  "version": "1.0.0",
-  "intent": "一句话说清能做什么",
-  "input": { "$ref-ish / inline JSON Schema" },
-  "output": { "..." }
-}
+```markdown
+---
+id: domain.verb
+layer: capability
+version: 1.0.0
+intent: 一句话说清能做什么
+input: { "type": "object", "properties": {} }    # JSON 内联
+output: { "type": "object", "properties": {} }
+---
+
+## 它做什么
+## 怎么实现
+## 何时用
+## 示例
 ```
 
-字段说明、枚举值、示例见 schema 内注释及 `atoms/` 样例。
+> 本 schema（`atom.schema.json`）描述 frontmatter 的字段；正文本体 = `description`（四节四图）。字段说明、枚举值、示例见 schema 内注释及 `atoms/` 样例。

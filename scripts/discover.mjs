@@ -33,8 +33,11 @@ async function fetchManifest(fullName, path) {
   if (!j.content) return null
   const text = Buffer.from(j.content, 'base64').toString('utf8')
   if (path.endsWith('.md')) {
-    const { valid, meta } = validateAtomDocumentText(text)
-    return valid ? meta : null
+    const parsed = parseAtomDocument(text)
+    if (!parsed.valid) return null
+    const check = validateAtomDocumentText(text)
+    if (!check.valid) return null
+    return parsed.meta
   }
   try {
     return JSON.parse(text)

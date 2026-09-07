@@ -4,6 +4,7 @@ export const CATEGORIES = ['data', 'document', 'money', 'comms', 'ai', 'web', 's
 export const ALLOWED_TOP_KEYS = new Set([
   'id', 'layer', 'version', 'intent', 'description', 'tags', 'category', 'input', 'output',
   'side_effects', 'lang', 'author', 'verified', 'implementation_ref', 'deps', 'tests',
+  'when_to_use', 'language',
 ])
 const ID_RE = /^[a-z0-9]+(\.[a-z0-9_]+)+$/
 const VER_RE = /^\d+\.\d+\.\d+$/
@@ -44,6 +45,62 @@ export function checkDescription(desc, context, errors, warnings) {
   if (!hasMermaid(/\bsequenceDiagram\b/)) errors.push(`${context}: description 缺少交互时序图（mermaid sequenceDiagram）`)
   const hasCall = fences.some((f) => /\bdigraph\b/.test(f.body) || /graph\s+(TD|LR|RL|BT)\b/.test(f.body))
   if (!hasCall) errors.push(`${context}: description 缺少调用图（digraph 或 mermaid graph TD/LR/RL/BT）`)
+}
+
+/** 解析整份 atom 文档（v0.3）：YAML frontmatter（元数据）+ Markdown 正文（= description）。
+ *  frontmatter 子集：每行 `key: value`；值若是数组/对象须为 JSON 内联（JSON ⊆ YAML），标量支持引号/数字/bool/null。 */
+export function parseAtomDocument(text, context = 'atom document') {
+  const s = String(text).replace(/\r\n/g, '\n')
+  const mHead = s.match(/^---[ \t]*\n([\s\S]*?)\n---[ \t]*(?:\n|$)/)
+  const errors = []
+  const warnings = []
+  if (!mHead) {
+    return { valid: false, meta: {}, body: '', errors: [`${context}: 必须以 YAML frontmatter 开头（--- … ---）`], warnings }
+  }
+  const body = s.slice(mHead[0].length).replace(/^\n+/, '')
+  const meta = {}
+  for (const line of mHead[1].split('\n')) {
+    const t = line.trim()
+    if (!t || t.startsWith('#')) continue
+    const mm = line.match(/^([A-Za-z0-9_-]+):\s*(.*)$/)
+    if (!mm) { warnings.push(`${context}: 忽略无法解析的 frontmatter 行：${JSON.stringify(line)}`); continue }
+    const key = mm[1]
+    const val = mm[2].trim()
+    let out
+    if (val === '') {
+      out = undefined
+    } else if (val.startsWith('{') || val.startsWith('[')) {
+      try { out = JSON.parse(val) } catch { errors.push(`${context}: frontmatter 键 ${key} 的数组/对象须为合法 JSON 内联值`); continue }
+    } else if (/^"(.*)"$/.test(val)) {
+      out = val.slice(1, -1)
+    } else if (/^'(.*)'$/.test(val)) {
+      out = val.slice(1, -1)
+    } else if (val === 'true') {
+      out = true
+    } else if (val === 'false') {
+      out = false
+    } else if (val === 'null') {
+      out = null
+    } else if (/^-?\d+(\.\d+)?$/.test(val)) {
+      out = Number(val)
+    } else {
+      out = val
+    }
+    meta[key] = out
+  }
+  return { valid: errors.length === 0, meta, body, errors, warnings }
+}
+
+/** 校验整份 atom 文档：frontmatter(除 description 外的 manifest 字段) + 正文四节四图。 */
+export function validateAtomDocumentText(text, context = 'atom document') {
+  const { valid, meta, body, errors, warnings } = parseAtomDocument(text, context)
+  if (!valid) return { valid, errors, warnings }
+  if (body.trim().length === 0) errors.push(`${context}: frontmatter 之后缺少 Markdown 正文（四节+四图）`)
+  const manifest = { ...meta, description: body }
+  const res = validateManifestObject(manifest, context)
+  errors.push(...res.errors)
+  warnings.push(...res.warnings)
+  return { valid: errors.length === 0, errors, warnings }
 }
 
 export function validateManifestObject(m, context = 'manifest') {
@@ -104,7 +161,7 @@ export function validateManifestObject(m, context = 'manifest') {
     errors.push(`${where('deps')}: 必须是字符串数组`)
   }
 
-  for (const k of ['lang', 'author', 'implementation_ref']) {
+  for (const k of ['lang', 'author', 'implementation_ref', 'when_to_use', 'language']) {
     if (k in m && typeof m[k] !== 'string') errors.push(`${where(k)}: 必须是字符串`)
   }
 

@@ -1,7 +1,7 @@
 import { writeFileSync, mkdirSync } from 'node:fs'
-import { join, dirname } from 'node:path'
+import { join, dirname, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { validateManifestObject } from './validate-lib.mjs'
+import { validateManifestObject, validateAtomDocumentText, parseAtomDocument } from './validate-lib.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
@@ -29,8 +29,13 @@ async function fetchManifest(fullName, path) {
   if (!res.ok) return null
   const j = await res.json()
   if (!j.content) return null
+  const text = Buffer.from(j.content, 'base64').toString('utf8')
+  if (path.endsWith('.md')) {
+    const { valid, meta } = validateAtomDocumentText(text)
+    return valid ? meta : null
+  }
   try {
-    return JSON.parse(Buffer.from(j.content, 'base64').toString('utf8'))
+    return JSON.parse(text)
   } catch {
     return null
   }
@@ -55,28 +60,34 @@ for (const repo of items) {
   repos += 1
   const found = []
 
-  const rootManifest = await fetchManifest(repo.full_name, 'atom.json')
-  if (rootManifest) found.push({ path: 'atom.json', m: rootManifest })
+  for (const rootName of ['atom.json', 'atom.md']) {
+    const rootManifest = await fetchManifest(repo.full_name, rootName)
+    if (rootManifest) found.push({ path: rootName, m: rootManifest, ext: rootName.endsWith('.md') ? '.md' : '.json' })
+  }
 
   const dirRes = await fetch(`https://api.github.com/repos/${repo.full_name}/contents/atoms`, { headers })
   if (dirRes.ok) {
     const entries = await dirRes.json()
     if (Array.isArray(entries)) {
-      for (const e of entries.filter((x) => x.type === 'file' && x.name.endsWith('.atom.json'))) {
+      for (const e of entries.filter((x) => x.type === 'file' && (x.name.endsWith('.atom.json') || x.name.endsWith('.atom.md')))) {
         const m = await fetchManifest(repo.full_name, `atoms/${e.name}`)
-        if (m) found.push({ path: `atoms/${e.name}`, m })
+        if (m) found.push({ path: `atoms/${e.name}`, m, ext: e.name.endsWith('.md') ? '.md' : '.json' })
       }
     }
   }
 
-  for (const { path, m } of found) {
+  for (const { path, m, ext } of found) {
     const label = `${repo.full_name}@${path}`
-    const res = validateManifestObject(m, label)
-    if (res.valid) {
-      index.push(pointerOf(repo, path, m))
-    } else {
-      problems.push(`${label}: ${res.errors.join(' | ')}`)
+    // .md 已在 fetchManifest 内经 validateAtomDocumentText 校验（meta 为合法 manifest 去 description）；
+    // .json 在这里按 JSON manifest 硬检。
+    if (ext === '.json') {
+      const res = validateManifestObject(m, label)
+      if (!res.valid) {
+        problems.push(`${label}: ${res.errors.join(' | ')}`)
+        continue
+      }
     }
+    index.push(pointerOf(repo, path, m))
   }
 }
 

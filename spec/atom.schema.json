@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/ZiFan1117/software-atom-market/spec/atom.schema.json",
-  "title": "Atom manifest",
-  "description": "软件原子市场 v0.1 —— 最小能力单元(Atom)的机器可读契约声明。",
+  "title": "Atom frontmatter",
+  "description": "软件原子市场 v0.3 —— 原子 = <id>.atom.md：本 schema 描述其 YAML frontmatter 的字段（description 不放 frontmatter，而在 `---` 后的正文本体）。兼容旧 v0.2 *.atom.json。",
   "type": "object",
   "additionalProperties": false,
   "required": ["id", "layer", "version", "intent", "description", "input", "output"],
@@ -28,7 +28,15 @@
     },
     "description": {
       "type": "string",
-      "description": "必填。Markdown 详情（v0.2 机器闸）：四节标题 + 四张 Mermaid 图（数据流转/模块分解/时序/调用图），细则见 detail-convention.md；机器缺一即不收录。"
+      "description": "正文本体（在 frontmatter `---` 之后，不入 frontmatter）。Markdown 详情（v0.3 机器闸）：四节标题（它做什么/怎么实现/何时用/示例）+ 四张 Mermaid 图（数据流转/模块分解/时序/调用图），细则见 detail-convention.md；机器缺一即不收录。"
+    },
+    "when_to_use": {
+      "type": "string",
+      "description": "推荐。何时用一句（渐进披露的命中前摘要，= 正文“## 何时用”的适用首条）。"
+    },
+    "language": {
+      "type": "string",
+      "description": "推荐。正文语言，如 zh-CN / en。"
     },
     "tags": {
       "type": "array",

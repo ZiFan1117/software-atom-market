@@ -26,7 +26,7 @@ Deep dives: framework & extensions → `docs/design/09`; protocol → `SPEC.md`;
 
 ```mermaid
 flowchart LR
-  A[作者：公开仓放 atom.json/atoms/*] -- 打 topic: software-atom --> D{联邦发现器}
+  A[作者：公开仓放 atom.md/atoms/*.atom.md] -- 打 topic: software-atom --> D{联邦发现器}
   B[作者：PR 一个 manifest] -- 进本仓 atoms/ --> C{中央 CI 机器闸}
   D -- 校验通过 --> R[registry/index.json 纯指针]
   C -- 校验通过 --> A2[atoms/ 中央策展]
@@ -43,7 +43,7 @@ flowchart LR
 ## Quick start · 快速开始（按角色）
 
 - **User (agent/human) · 使用者** → install [`dsh-atom-market`](https://github.com/ZiFan1117/dsh-atom-market): `dsh plugin add github:ZiFan1117/dsh-atom-market`, then `atom_search` / `atom_read`. Zero config. 零配置。
-- **Publisher · 想发布一个原子** → read [`CONTRIBUTING.md`](./CONTRIBUTING.md): put `atom.json` (or `atoms/*.atom.json`) in your public repo + tag topic `software-atom`; the machine discovers daily. Pre-check with `validate-single` (see [`SPEC.md`](./SPEC.md) §3). 放你公开仓 + 打 topic，机器每日发现；想先自检用单文件脚本。
+- **Publisher · 想发布一个原子** → read [`CONTRIBUTING.md`](./CONTRIBUTING.md): put `<id>.atom.md` (or `atoms/*.atom.md`) in your public repo + tag topic `software-atom`; the machine discovers daily (v0.2 `*.atom.json` still accepted). Pre-check with `validate-single` (see [`SPEC.md`](./SPEC.md) §3). 放你公开仓 + 打 topic，机器每日发现；想先自检用单文件脚本。
 - **Protocol reader · 想读懂协议** → [`SPEC.md`](./SPEC.md) first, then [`spec/`](./spec/README.md) (schema / detail-convention / FEDERATION). 先读 SPEC，再看 spec/ 三件。
 - **Thinker · 想看思考与缘起** → [`docs/README.md`](./docs/README.md) (categorized). 分类索引在 docs/README。
 
@@ -57,7 +57,7 @@ software-atom-market/
 ├─ LICENSE              MIT
 ├─ package.json         ✍️ 脚本入口（zero npm deps）
 ├─ spec/                ✍️ 规范三件（schema / detail-convention / FEDERATION / README）
-├─ atoms/               ✍️ 中央策展原子（*.atom.json）
+├─ atoms/               ✍️ 中央策展原子（*.atom.md；旧 *.atom.json 兼容）
 ├─ registry/index.json  ⚙️ 联邦索引（纯指针，discover 产出，勿手编）
 ├─ CATALOG.md           ⚙️ 目录（central+community，generate 产出，勿手编）
 ├─ scripts/             ✍️ 机器实现（validate / validate-single / generate / discover）
@@ -67,7 +67,7 @@ software-atom-market/
 
 ## Status · 状态
 
-- **Live · 已落地**：Contract v0.2 (machine gate, four-section/four-diagram) · federated pointer index + daily discovery · auto catalog · plugin v0.1.2 (index search + live source read). 契约 v0.2 机器闸、联邦纯指针+每日发现、目录自动生成、插件 v0.1.2（索引搜索+实时回源）。
+- **Live · 已落地**：Contract v0.3 (`<id>.atom.md`: YAML frontmatter + four-section/four-diagram body) · federated pointer index + daily discovery · auto catalog · plugin v0.1.2 (index search + live source read). 契约 v0.3：原子=`.atom.md`（YAML frontmatter + 四节四图正文，渐进披露头 when_to_use/language），联邦纯指针+每日发现、目录自动生成、插件 v0.1.2（索引搜索+实时回源）。
 - **Research (not production promise) · 研究中**：`atom_assemble`, DbC pre/post/invariants (v0.3+), controlled experiments — see `docs/research/04`, `docs/design/09`.
 - **vs. ecosystem · 与既有生态**：not a duplicate of MCP / Claude Skills / Composio tool layers; we add the **intent-contract + machine-gate + human/agent-composable** layer (analysis → `docs/research/05`).
 

@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs'
-import { join, dirname } from 'node:path'
+import { join, dirname, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { parseAtomDocument } from './validate-lib.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
@@ -12,11 +13,20 @@ function row(a) {
   return `| ${a.id} | ${String(a.intent).replace(/\|/g, '\\|')} | ${a.category ?? 'other'} | ${a.side_effects ?? 'none'} | ${a.verified ? '✅' : ''} |`
 }
 
+function readMeta(file) {
+  const text = readFileSync(file, 'utf8')
+  if (extname(file) === '.md') {
+    const { meta } = parseAtomDocument(text)
+    return meta
+  }
+  return JSON.parse(text)
+}
+
 const central = []
-const centralFiles = readdirSync(atomsDir).filter((f) => f.endsWith('.atom.json')).sort()
+const centralFiles = readdirSync(atomsDir).filter((f) => f.endsWith('.atom.json') || f.endsWith('.atom.md')).sort()
 for (const f of centralFiles) {
   try {
-    const m = JSON.parse(readFileSync(join(atomsDir, f), 'utf8'))
+    const m = readMeta(join(atomsDir, f))
     if (typeof m.id !== 'string') continue
     central.push({ id: m.id, intent: m.intent ?? '', category: m.category ?? 'other', side_effects: m.side_effects ?? 'none', verified: m.verified === true })
   } catch {

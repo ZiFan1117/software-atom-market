@@ -22,6 +22,8 @@ const pointerOf = (repo, path, m) => ({
   version: m.version ?? '',
   verified: false,
   updated_at: repo.pushed_at,
+  tags: Array.isArray(m.tags) ? m.tags.filter((t) => typeof t === 'string') : undefined,
+  when_to_use: typeof m.when_to_use === 'string' ? m.when_to_use : undefined,
 })
 
 async function fetchManifest(fullName, path) {

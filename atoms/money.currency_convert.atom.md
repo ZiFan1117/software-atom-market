@@ -9,9 +9,9 @@ tags: ["money","currency","fx"]
 category: money
 side_effects: network
 lang: python
-author: example
+author: ZiFan1117
 verified: false
-implementation_ref: "example: python package; runner 尚未实现"
+implementation_ref: "central sample manifest (no runner); federated implementation target: money.currency_convert"
 input: {"type":"object","required":["amount","from","to"],"properties":{"amount":{"type":"number","description":"金额（正数）"},"from":{"type":"string","description":"ISO 4217 源币种，如 USD"},"to":{"type":"string","description":"ISO 4217 目标币种，如 CNY"},"rate_source":{"type":"string","description":"可选，指定汇率源；默认官方实时汇率","default":"auto"}}}
 output: {"type":"object","required":["converted","rate","rate_date"],"properties":{"converted":{"type":"number"},"rate":{"type":"number"},"rate_date":{"type":"string","format":"date"}}}
 tests: [{"input":{"amount":100,"from":"USD","to":"CNY"},"expect":{"type":"object","required":["converted","rate"]}}]

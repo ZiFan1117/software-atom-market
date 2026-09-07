@@ -9,9 +9,9 @@ tags: ["pdf","table","parse"]
 category: document
 side_effects: none
 lang: python
-author: example
+author: ZiFan1117
 verified: false
-implementation_ref: "example: python package; runner 尚未实现"
+implementation_ref: "central sample manifest (no runner); federated implementation target: pdf.extract_tables"
 input: {"type":"object","required":["pdf_bytes"],"properties":{"pdf_bytes":{"type":"string","contentEncoding":"base64","contentMediaType":"application/pdf","description":"PDF 文件字节（base64）"},"page_range":{"type":"array","items":{"type":"integer"},"description":"可选，只抽取这些页"}}}
 output: {"type":"array","description":"每页每个表格一个对象","items":{"type":"object","required":["headers","rows"],"properties":{"page":{"type":"integer"},"headers":{"type":"array","items":{"type":"string"}},"rows":{"type":"array","items":{"type":"array","items":{"type":"string"}}}}}}
 tests: [{"input":{"pdf_bytes":"<sample base64>"},"expect":{"type":"array","minItems":1}}]

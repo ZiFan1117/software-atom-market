@@ -9,9 +9,9 @@ tags: ["csv","json","parse"]
 category: data
 side_effects: none
 lang: python
-author: example
+author: ZiFan1117
 verified: false
-implementation_ref: "example: python package; runner 尚未实现"
+implementation_ref: "central sample manifest (no runner); federated implementation target: data.csv_to_json"
 input: {"type":"object","required":["csv_text"],"properties":{"csv_text":{"type":"string","description":"CSV 原始文本（含或不含表头）"},"has_header":{"type":"boolean","description":"首行是否为表头","default":true},"delimiter":{"type":"string","description":"分隔符","default":","}}}
 output: {"type":"array","items":{"type":"object","description":"一行 CSV = 一个对象（has_header=false 时键为 col_0, col_1, ...）"}}
 tests: [{"input":{"csv_text":"name,age\nalice,30\nbob,25","has_header":true},"expect":[{"name":"alice","age":"30"},{"name":"bob","age":"25"}]}]

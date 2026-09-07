@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T16:19:30.768Z",
+  "generated_at": "2026-09-07T16:32:42.769Z",
   "topic": "software-atom",
   "count": 30,
   "atoms": [
@@ -13,7 +13,13 @@
       "side_effects": "none",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "csv",
+        "json",
+        "parse"
+      ],
+      "when_to_use": "文本层完整的 CSV（含/不含表头、自定义分隔符）。"
     },
     {
       "repo": "ZiFan1117/software-atom-market",
@@ -25,7 +31,13 @@
       "side_effects": "email",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "mail",
+        "email",
+        "notify"
+      ],
+      "when_to_use": "通知、报表送达、带附件的自动邮件。"
     },
     {
       "repo": "ZiFan1117/software-atom-market",
@@ -37,7 +49,13 @@
       "side_effects": "network",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "money",
+        "currency",
+        "fx"
+      ],
+      "when_to_use": "按当前汇率做一次性换算（发票、报表、预算）。"
     },
     {
       "repo": "ZiFan1117/software-atom-market",
@@ -49,7 +67,13 @@
       "side_effects": "none",
       "version": "1.2.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "pdf",
+        "table",
+        "parse"
+      ],
+      "when_to_use": "报表、账单、论文数据表等文本层完整的版式化表格。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -61,7 +85,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "preset",
+        "persona",
+        "agent",
+        "bracelet"
+      ],
+      "when_to_use": "适用：把确定性工具封装成可对话的定制助手；跨会话挂载。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -73,7 +104,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "bazi",
+        "chart",
+        "pillars",
+        "deterministic"
+      ],
+      "when_to_use": "适用：模型拿到生辰后由确定性工具排盘，禁止 LLM 自行推算干支。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -85,7 +123,15 @@
       "side_effects": "db",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "storage",
+        "session",
+        "design",
+        "save",
+        "load"
+      ],
+      "when_to_use": "适用：保存定稿后免重推理即可恢复同会话方案。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -97,7 +143,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "design",
+        "generate",
+        "validate",
+        "slots"
+      ],
+      "when_to_use": "适用：模型从 propose 的 designs 挑一款后“逐字照抄”珠序定稿出图。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -109,7 +162,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "wuxing",
+        "strength",
+        "favorable",
+        "verdict"
+      ],
+      "when_to_use": "适用：一切需要喜忌判定的调用（propose_designs 主路径）。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -121,7 +181,15 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "ontology",
+        "bead",
+        "bracelet",
+        "catalog",
+        "rdf"
+      ],
+      "when_to_use": "适用：筛珠/求解/解析/SVG 渲染读取可用珠的唯一珠源；换库存只需换本体实例不碰代码。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -133,7 +201,15 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "ontology",
+        "style",
+        "bracelet",
+        "slot",
+        "rdf"
+      ],
+      "when_to_use": "适用：求解引擎在给定款式下枚举组合前读取槽位与约束声明。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -145,7 +221,15 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "ontology",
+        "bazi",
+        "wuxing",
+        "ganzhi",
+        "rdf"
+      ],
+      "when_to_use": "适用：任何需要唯一引用 五行/干支/节气 术语的规则、引擎或外部系统；获取 生/克 邻接以推喜忌。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -157,7 +241,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "parse",
+        "slots",
+        "beads",
+        "disambiguate"
+      ],
+      "when_to_use": "适用：把 LLM 照抄的珠序转成可渲染/可保存槽位。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -169,7 +260,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "propose",
+        "design",
+        "bracelet",
+        "one-shot"
+      ],
+      "when_to_use": "适用：模型主流程的“提方案”一步；换款/加限定也走这里（不重排盘）。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -181,7 +279,13 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "rule",
+        "consistency",
+        "invariant"
+      ],
+      "when_to_use": "适用：改喜忌/旺衰规则数据后回归；服务启动自检。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -193,7 +297,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "rule",
+        "naming",
+        "bead",
+        "canonical"
+      ],
+      "when_to_use": "适用：解析珠序前校验与消歧，杜绝“白玉/玛瑙”等编造名与缩写。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -205,7 +316,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "rule",
+        "wuxing",
+        "strength",
+        "deterministic"
+      ],
+      "when_to_use": "适用：在喜忌选择之前判定日主强弱；判据变更只改规则数据。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -217,7 +335,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "rule",
+        "wuxing",
+        "favorable",
+        "unfavorable"
+      ],
+      "when_to_use": "适用：给出喜用/忌神五行集合供筛珠。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -229,7 +354,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "bead",
+        "select",
+        "favorable",
+        "bracelet"
+      ],
+      "when_to_use": "适用：得到喜忌后给出可/不可用珠清单；作为求解的输入。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -241,7 +373,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "solver",
+        "style",
+        "constraint",
+        "enumeration"
+      ],
+      "when_to_use": "适用：给可用珠+腕围产出一组可选款式方案。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -253,7 +392,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "ui",
+        "editor",
+        "bead",
+        "interactive"
+      ],
+      "when_to_use": "适用：用户想换某颗珠/调直径时给出可点选编辑。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -265,7 +411,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "ui",
+        "svg",
+        "bracelet",
+        "render"
+      ],
+      "when_to_use": "适用：向用户展示成品手串图；工具结果 render 阶段。"
     },
     {
       "repo": "ZiFan1117/dsh-atom-market",
@@ -277,7 +430,13 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "atom",
+        "draft",
+        "scaffold"
+      ],
+      "when_to_use": "适用：投稿快速起稿，再用 atom.gate.validate 自检。"
     },
     {
       "repo": "ZiFan1117/dsh-atom-market",
@@ -289,7 +448,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "atom",
+        "parse",
+        "manifest",
+        "frontmatter"
+      ],
+      "when_to_use": "投稿/读取前把 <id>.atom.md（或旧 .atom.json）拆成元数据与正文本体"
     },
     {
       "repo": "ZiFan1117/dsh-atom-market",
@@ -301,7 +467,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "atom",
+        "validate",
+        "gate",
+        "machine-check"
+      ],
+      "when_to_use": "投稿前自检、PR CI、插件 atom_validate"
     },
     {
       "repo": "ZiFan1117/dsh-atom-market",
@@ -313,7 +486,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "atom",
+        "search",
+        "registry",
+        "retrieval"
+      ],
+      "when_to_use": "适用：atom_search 返回指针级一句话命中。"
     },
     {
       "repo": "ZiFan1117/dsh-atom-market",
@@ -325,7 +505,14 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "plugin",
+        "dsh",
+        "atom",
+        "market"
+      ],
+      "when_to_use": "把软件原子市场装进 dsh，Agent 可逛/读/验/稿"
     },
     {
       "repo": "ZiFan1117/dsh-atom-market",
@@ -337,7 +524,14 @@
       "side_effects": "network",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "github",
+        "fetch",
+        "contents",
+        "raw"
+      ],
+      "when_to_use": "适用：回源读 manifest/atom 文档、registry 索引。"
     },
     {
       "repo": "ZiFan1117/dsh-atom-market",
@@ -349,7 +543,14 @@
       "side_effects": "network",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "store",
+        "atom",
+        "read",
+        "fetch"
+      ],
+      "when_to_use": "适用：atom_read 命中后给完整详情。"
     },
     {
       "repo": "ZiFan1117/dsh-atom-market",
@@ -361,7 +562,14 @@
       "side_effects": "network",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:19:30.768Z"
+      "updated_at": "2026-09-07T16:32:42.769Z",
+      "tags": [
+        "store",
+        "registry",
+        "index",
+        "pointers"
+      ],
+      "when_to_use": "适用：atom_search/atom_read 先取商店指针集。"
     }
   ]
 }

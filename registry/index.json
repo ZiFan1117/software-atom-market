@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-08T13:06:13.279Z",
+  "generated_at": "2026-09-08T13:37:01.238Z",
   "topic": "software-atom",
-  "count": 30,
+  "count": 29,
   "atoms": [
     {
       "repo": "ZiFan1117/software-atom-market",
@@ -13,7 +13,7 @@
       "side_effects": "none",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "csv",
         "json",
@@ -31,7 +31,7 @@
       "side_effects": "email",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "mail",
         "email",
@@ -49,7 +49,7 @@
       "side_effects": "network",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "money",
         "currency",
@@ -67,7 +67,7 @@
       "side_effects": "none",
       "version": "1.2.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "pdf",
         "table",
@@ -85,7 +85,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "preset",
         "persona",
@@ -104,7 +104,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "bazi",
         "chart",
@@ -123,7 +123,7 @@
       "side_effects": "db",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "storage",
         "session",
@@ -143,7 +143,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "design",
         "generate",
@@ -162,7 +162,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "wuxing",
         "strength",
@@ -173,63 +173,24 @@
     },
     {
       "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.kb.bead_catalog.atom.md",
-      "id": "bazidiy.kb.bead_catalog",
-      "intent": "提供手串珠子库本体：珠实例、变体、五行归属、直径、颜色与图片",
+      "path": "atoms/bazidiy.kb.atom.md",
+      "id": "bazidiy.kb",
+      "intent": "BaziDIY 领域本体与数据：五行/干支/节气 + 珠料×变体=珠 + 款式槽位（Apache Ossie 合并篇）",
       "layer": "primitive",
       "category": "data",
       "side_effects": "none",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "ontology",
-        "bead",
-        "bracelet",
-        "catalog",
-        "ossie"
-      ],
-      "when_to_use": "适用：筛珠/求解/解析/SVG 渲染读取可用珠的唯一珠源；换库存只需换本体实例不碰代码。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.kb.style_library.atom.md",
-      "id": "bazidiy.kb.style_library",
-      "intent": "提供手串款式库本体：款式结构、槽位、允许变体/直径约束与隔片径映射",
-      "layer": "primitive",
-      "category": "data",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
-      "tags": [
-        "ontology",
-        "style",
-        "bracelet",
-        "slot",
-        "ossie"
-      ],
-      "when_to_use": "适用：求解引擎在给定款式下枚举组合前读取槽位与约束声明。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.kb.wuxing_ganzhi.atom.md",
-      "id": "bazidiy.kb.wuxing_ganzhi",
-      "intent": "提供五行、天干、地支、节气的概念与个体及生克关系本体",
-      "layer": "primitive",
-      "category": "data",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
-      "tags": [
-        "ontology",
-        "bazi",
+        "kb",
         "wuxing",
-        "ganzhi",
+        "bead",
+        "style",
         "ossie"
       ],
-      "when_to_use": "适用：任何需要唯一引用 五行/干支/节气 术语的规则、引擎或外部系统；获取 生/克 邻接以推喜忌。"
+      "when_to_use": "全领域概念/关系/约束与实例数据唯一源（ontology.yaml + semantic 契约 + SQLite）；其它原子经绑定/契约引用"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -241,7 +202,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "parse",
         "slots",
@@ -260,7 +221,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "propose",
         "design",
@@ -279,7 +240,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "rule",
         "consistency",
@@ -297,7 +258,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "rule",
         "naming",
@@ -305,6 +266,25 @@
         "canonical"
       ],
       "when_to_use": "适用：解析珠序前校验与消歧，杜绝“白玉/玛瑙”等编造名与缩写。"
+    },
+    {
+      "repo": "ZiFan1117/bazidiy",
+      "path": "atoms/bazidiy.rules.relations.atom.md",
+      "id": "bazidiy.rules.relations",
+      "intent": "五行关系访问层：加载生克关系并沿关系取后继（共享工具箱，单一定义）",
+      "layer": "primitive",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T13:37:01.238Z",
+      "tags": [
+        "rule",
+        "relations",
+        "wuxing",
+        "shared"
+      ],
+      "when_to_use": "被 strength/verdict_choice/consistency 等规则原子复用的五行关系遍历；避免各自复制实现"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -316,7 +296,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "rule",
         "wuxing",
@@ -335,7 +315,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "rule",
         "wuxing",
@@ -354,7 +334,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "bead",
         "select",
@@ -373,7 +353,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "solver",
         "style",
@@ -392,7 +372,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "ui",
         "editor",
@@ -411,7 +391,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "ui",
         "svg",
@@ -430,7 +410,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "atom",
         "draft",
@@ -448,7 +428,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "atom",
         "parse",
@@ -467,7 +447,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "atom",
         "validate",
@@ -486,7 +466,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "atom",
         "search",
@@ -505,7 +485,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "plugin",
         "dsh",
@@ -524,7 +504,7 @@
       "side_effects": "network",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "github",
         "fetch",
@@ -543,7 +523,7 @@
       "side_effects": "network",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "store",
         "atom",
@@ -562,7 +542,7 @@
       "side_effects": "network",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:06:13.279Z",
+      "updated_at": "2026-09-08T13:37:01.238Z",
       "tags": [
         "store",
         "registry",

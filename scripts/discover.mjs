@@ -20,7 +20,7 @@ const pointerOf = (repo, path, m) => ({
   category: m.category ?? 'other',
   side_effects: m.side_effects ?? 'none',
   version: m.version ?? '',
-  verified: false,
+  verified: m.verified === true,
   updated_at: repo.pushed_at,
   tags: Array.isArray(m.tags) ? m.tags.filter((t) => typeof t === 'string') : undefined,
   when_to_use: typeof m.when_to_use === 'string' ? m.when_to_use : undefined,

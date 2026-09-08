@@ -1,158 +1,79 @@
 {
-  "generated_at": "2026-09-08T03:04:53.177Z",
+  "generated_at": "2026-09-08T13:06:13.279Z",
   "topic": "software-atom",
   "count": 30,
   "atoms": [
     {
-      "repo": "ZiFan1117/dsh-atom-market",
-      "path": "atoms/atom.draft.atom.md",
-      "id": "atom.draft",
-      "intent": "由一句意图生成 atom 文档骨架（含空四节正文占位）",
-      "layer": "capability",
-      "category": "code",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T16:35:27Z",
-      "tags": [
-        "atom",
-        "draft",
-        "scaffold"
-      ],
-      "when_to_use": "适用：投稿快速起稿，再用 atom.gate.validate 自检。"
-    },
-    {
-      "repo": "ZiFan1117/dsh-atom-market",
-      "path": "atoms/atom.gate.parse.atom.md",
-      "id": "atom.gate.parse",
-      "intent": "解析原子文档：YAML frontmatter + 正文（或 legacy JSON manifest）→ meta + body",
-      "layer": "primitive",
-      "category": "code",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T16:35:27Z",
-      "tags": [
-        "atom",
-        "parse",
-        "manifest",
-        "frontmatter"
-      ],
-      "when_to_use": "投稿/读取前把 <id>.atom.md（或旧 .atom.json）拆成元数据与正文本体"
-    },
-    {
-      "repo": "ZiFan1117/dsh-atom-market",
-      "path": "atoms/atom.gate.validate.atom.md",
-      "id": "atom.gate.validate",
-      "intent": "机器闸校验原子：字段白名单/枚举/必填 + 正文四节四图硬检 → valid/errors/warnings",
-      "layer": "primitive",
-      "category": "code",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T16:35:27Z",
-      "tags": [
-        "atom",
-        "validate",
-        "gate",
-        "machine-check"
-      ],
-      "when_to_use": "投稿前自检、PR CI、插件 atom_validate"
-    },
-    {
-      "repo": "ZiFan1117/dsh-atom-market",
-      "path": "atoms/atom.registry.search.atom.md",
-      "id": "atom.registry.search",
-      "intent": "在原子指针集里按 query 检索 id+intent+tags+when_to_use（可过滤 layer/category/source）",
-      "layer": "primitive",
-      "category": "code",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T16:35:27Z",
-      "tags": [
-        "atom",
-        "search",
-        "registry",
-        "retrieval"
-      ],
-      "when_to_use": "适用：atom_search 返回指针级一句话命中。"
-    },
-    {
-      "repo": "ZiFan1117/dsh-atom-market",
-      "path": "atoms/dsh.atom_market.plugin.atom.md",
-      "id": "dsh.atom_market.plugin",
-      "intent": "把逛/读/验/稿四个商店动作注册进 DSH：分装成可对话的商店插件（框架原子）",
-      "layer": "capability",
-      "category": "ai",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T16:35:27Z",
-      "tags": [
-        "plugin",
-        "dsh",
-        "atom",
-        "market"
-      ],
-      "when_to_use": "把软件原子市场装进 dsh，Agent 可逛/读/验/稿"
-    },
-    {
-      "repo": "ZiFan1117/dsh-atom-market",
-      "path": "atoms/github.fetch_file.atom.md",
-      "id": "github.fetch_file",
-      "intent": "从 GitHub contents API 读取仓库某文件原文（base64 解码为 UTF-8）",
-      "layer": "capability",
-      "category": "code",
-      "side_effects": "network",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T16:35:27Z",
-      "tags": [
-        "github",
-        "fetch",
-        "contents",
-        "raw"
-      ],
-      "when_to_use": "适用：回源读 manifest/atom 文档、registry 索引。"
-    },
-    {
-      "repo": "ZiFan1117/dsh-atom-market",
-      "path": "atoms/store.read_atom.atom.md",
-      "id": "store.read_atom",
-      "intent": "按指针回源读 manifest/atom 文档并解析（.atom.md 与旧 .atom.json 均支持）",
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/data.csv_to_json.atom.md",
+      "id": "data.csv_to_json",
+      "intent": "把 CSV 文本转成 JSON 数组",
       "layer": "capability",
       "category": "data",
-      "side_effects": "network",
-      "version": "0.1.0",
+      "side_effects": "none",
+      "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:35:27Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
-        "store",
-        "atom",
-        "read",
-        "fetch"
+        "csv",
+        "json",
+        "parse"
       ],
-      "when_to_use": "适用：atom_read 命中后给完整详情。"
+      "when_to_use": "文本层完整的 CSV（含/不含表头、自定义分隔符）。"
     },
     {
-      "repo": "ZiFan1117/dsh-atom-market",
-      "path": "atoms/store.read_index.atom.md",
-      "id": "store.read_index",
-      "intent": "拉取并缓存 registry/index.json 指针集（或本地 DSH_ATOM_STORE_DIR atoms 目录）",
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/mail.send.atom.md",
+      "id": "mail.send",
+      "intent": "发送一封邮件",
       "layer": "capability",
-      "category": "data",
-      "side_effects": "network",
-      "version": "0.1.0",
+      "category": "comms",
+      "side_effects": "email",
+      "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:35:27Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
-        "store",
-        "registry",
-        "index",
-        "pointers"
+        "mail",
+        "email",
+        "notify"
       ],
-      "when_to_use": "适用：atom_search/atom_read 先取商店指针集。"
+      "when_to_use": "通知、报表送达、带附件的自动邮件。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/money.currency_convert.atom.md",
+      "id": "money.currency_convert",
+      "intent": "把金额换算成目标币种",
+      "layer": "capability",
+      "category": "money",
+      "side_effects": "network",
+      "version": "1.0.0",
+      "verified": false,
+      "updated_at": "2026-09-08T13:06:13.279Z",
+      "tags": [
+        "money",
+        "currency",
+        "fx"
+      ],
+      "when_to_use": "按当前汇率做一次性换算（发票、报表、预算）。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/pdf.extract_tables.atom.md",
+      "id": "pdf.extract_tables",
+      "intent": "从 PDF 中抽出所有表格",
+      "layer": "capability",
+      "category": "document",
+      "side_effects": "none",
+      "version": "1.2.0",
+      "verified": false,
+      "updated_at": "2026-09-08T13:06:13.279Z",
+      "tags": [
+        "pdf",
+        "table",
+        "parse"
+      ],
+      "when_to_use": "报表、账单、论文数据表等文本层完整的版式化表格。"
     },
     {
       "repo": "ZiFan1117/bazidiy",
@@ -164,7 +85,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "preset",
         "persona",
@@ -182,8 +103,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "bazi",
         "chart",
@@ -202,7 +123,7 @@
       "side_effects": "db",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "storage",
         "session",
@@ -221,8 +142,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "design",
         "generate",
@@ -240,8 +161,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "wuxing",
         "strength",
@@ -260,13 +181,13 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "ontology",
         "bead",
         "bracelet",
         "catalog",
-        "rdf"
+        "ossie"
       ],
       "when_to_use": "适用：筛珠/求解/解析/SVG 渲染读取可用珠的唯一珠源；换库存只需换本体实例不碰代码。"
     },
@@ -280,13 +201,13 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "ontology",
         "style",
         "bracelet",
         "slot",
-        "rdf"
+        "ossie"
       ],
       "when_to_use": "适用：求解引擎在给定款式下枚举组合前读取槽位与约束声明。"
     },
@@ -300,13 +221,13 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "ontology",
         "bazi",
         "wuxing",
         "ganzhi",
-        "rdf"
+        "ossie"
       ],
       "when_to_use": "适用：任何需要唯一引用 五行/干支/节气 术语的规则、引擎或外部系统；获取 生/克 邻接以推喜忌。"
     },
@@ -319,8 +240,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "parse",
         "slots",
@@ -338,8 +259,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "propose",
         "design",
@@ -357,8 +278,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "rule",
         "consistency",
@@ -375,8 +296,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "rule",
         "naming",
@@ -394,8 +315,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "rule",
         "wuxing",
@@ -413,8 +334,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "rule",
         "wuxing",
@@ -432,8 +353,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "bead",
         "select",
@@ -451,8 +372,8 @@
       "category": "other",
       "side_effects": "none",
       "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "verified": true,
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "solver",
         "style",
@@ -471,7 +392,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "ui",
         "editor",
@@ -490,7 +411,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T14:35:02Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
         "ui",
         "svg",
@@ -500,76 +421,155 @@
       "when_to_use": "适用：向用户展示成品手串图；工具结果 render 阶段。"
     },
     {
-      "repo": "ZiFan1117/software-atom-market",
-      "path": "atoms/data.csv_to_json.atom.md",
-      "id": "data.csv_to_json",
-      "intent": "把 CSV 文本转成 JSON 数组",
+      "repo": "ZiFan1117/dsh-atom-market",
+      "path": "atoms/atom.draft.atom.md",
+      "id": "atom.draft",
+      "intent": "由一句意图生成 atom 文档骨架（含空四节正文占位）",
+      "layer": "capability",
+      "category": "code",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T13:06:13.279Z",
+      "tags": [
+        "atom",
+        "draft",
+        "scaffold"
+      ],
+      "when_to_use": "适用：投稿快速起稿，再用 atom.gate.validate 自检。"
+    },
+    {
+      "repo": "ZiFan1117/dsh-atom-market",
+      "path": "atoms/atom.gate.parse.atom.md",
+      "id": "atom.gate.parse",
+      "intent": "解析原子文档：YAML frontmatter + 正文（或 legacy JSON manifest）→ meta + body",
+      "layer": "primitive",
+      "category": "code",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T13:06:13.279Z",
+      "tags": [
+        "atom",
+        "parse",
+        "manifest",
+        "frontmatter"
+      ],
+      "when_to_use": "投稿/读取前把 <id>.atom.md（或旧 .atom.json）拆成元数据与正文本体"
+    },
+    {
+      "repo": "ZiFan1117/dsh-atom-market",
+      "path": "atoms/atom.gate.validate.atom.md",
+      "id": "atom.gate.validate",
+      "intent": "机器闸校验原子：字段白名单/枚举/必填 + 正文四节四图硬检 → valid/errors/warnings",
+      "layer": "primitive",
+      "category": "code",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T13:06:13.279Z",
+      "tags": [
+        "atom",
+        "validate",
+        "gate",
+        "machine-check"
+      ],
+      "when_to_use": "投稿前自检、PR CI、插件 atom_validate"
+    },
+    {
+      "repo": "ZiFan1117/dsh-atom-market",
+      "path": "atoms/atom.registry.search.atom.md",
+      "id": "atom.registry.search",
+      "intent": "在原子指针集里按 query 检索 id+intent+tags+when_to_use（可过滤 layer/category/source）",
+      "layer": "primitive",
+      "category": "code",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T13:06:13.279Z",
+      "tags": [
+        "atom",
+        "search",
+        "registry",
+        "retrieval"
+      ],
+      "when_to_use": "适用：atom_search 返回指针级一句话命中。"
+    },
+    {
+      "repo": "ZiFan1117/dsh-atom-market",
+      "path": "atoms/dsh.atom_market.plugin.atom.md",
+      "id": "dsh.atom_market.plugin",
+      "intent": "把逛/读/验/稿四个商店动作注册进 DSH：分装成可对话的商店插件（框架原子）",
+      "layer": "capability",
+      "category": "ai",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T13:06:13.279Z",
+      "tags": [
+        "plugin",
+        "dsh",
+        "atom",
+        "market"
+      ],
+      "when_to_use": "把软件原子市场装进 dsh，Agent 可逛/读/验/稿"
+    },
+    {
+      "repo": "ZiFan1117/dsh-atom-market",
+      "path": "atoms/github.fetch_file.atom.md",
+      "id": "github.fetch_file",
+      "intent": "从 GitHub contents API 读取仓库某文件原文（base64 解码为 UTF-8）",
+      "layer": "capability",
+      "category": "code",
+      "side_effects": "network",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T13:06:13.279Z",
+      "tags": [
+        "github",
+        "fetch",
+        "contents",
+        "raw"
+      ],
+      "when_to_use": "适用：回源读 manifest/atom 文档、registry 索引。"
+    },
+    {
+      "repo": "ZiFan1117/dsh-atom-market",
+      "path": "atoms/store.read_atom.atom.md",
+      "id": "store.read_atom",
+      "intent": "按指针回源读 manifest/atom 文档并解析（.atom.md 与旧 .atom.json 均支持）",
       "layer": "capability",
       "category": "data",
-      "side_effects": "none",
-      "version": "1.0.0",
-      "verified": false,
-      "updated_at": "2026-09-07T16:39:18Z",
-      "tags": [
-        "csv",
-        "json",
-        "parse"
-      ],
-      "when_to_use": "文本层完整的 CSV（含/不含表头、自定义分隔符）。"
-    },
-    {
-      "repo": "ZiFan1117/software-atom-market",
-      "path": "atoms/mail.send.atom.md",
-      "id": "mail.send",
-      "intent": "发送一封邮件",
-      "layer": "capability",
-      "category": "comms",
-      "side_effects": "email",
-      "version": "1.0.0",
-      "verified": false,
-      "updated_at": "2026-09-07T16:39:18Z",
-      "tags": [
-        "mail",
-        "email",
-        "notify"
-      ],
-      "when_to_use": "通知、报表送达、带附件的自动邮件。"
-    },
-    {
-      "repo": "ZiFan1117/software-atom-market",
-      "path": "atoms/money.currency_convert.atom.md",
-      "id": "money.currency_convert",
-      "intent": "把金额换算成目标币种",
-      "layer": "capability",
-      "category": "money",
       "side_effects": "network",
-      "version": "1.0.0",
+      "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:39:18Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
-        "money",
-        "currency",
-        "fx"
+        "store",
+        "atom",
+        "read",
+        "fetch"
       ],
-      "when_to_use": "按当前汇率做一次性换算（发票、报表、预算）。"
+      "when_to_use": "适用：atom_read 命中后给完整详情。"
     },
     {
-      "repo": "ZiFan1117/software-atom-market",
-      "path": "atoms/pdf.extract_tables.atom.md",
-      "id": "pdf.extract_tables",
-      "intent": "从 PDF 中抽出所有表格",
+      "repo": "ZiFan1117/dsh-atom-market",
+      "path": "atoms/store.read_index.atom.md",
+      "id": "store.read_index",
+      "intent": "拉取并缓存 registry/index.json 指针集（或本地 DSH_ATOM_STORE_DIR atoms 目录）",
       "layer": "capability",
-      "category": "document",
-      "side_effects": "none",
-      "version": "1.2.0",
+      "category": "data",
+      "side_effects": "network",
+      "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-07T16:39:18Z",
+      "updated_at": "2026-09-08T13:06:13.279Z",
       "tags": [
-        "pdf",
-        "table",
-        "parse"
+        "store",
+        "registry",
+        "index",
+        "pointers"
       ],
-      "when_to_use": "报表、账单、论文数据表等文本层完整的版式化表格。"
+      "when_to_use": "适用：atom_search/atom_read 先取商店指针集。"
     }
   ]
 }

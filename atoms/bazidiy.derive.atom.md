@@ -11,8 +11,8 @@ side_effects: none
 lang: typescript
 author: ZiFan1117
 verified: true
-implementation_ref: "bazidiy @bazidiy/ontology: atoms/bazidiy.derive/impl/index.ts"
-deps: ["bazidiy.calculate_chart","bazidiy.infer_verdict","bazidiy.propose_designs","bazidiy.evidence","bazidiy.rules.guards"]
+implementation_ref: "bazidiy @bazidiy/ontology: atoms/bazidiy.derive/impl/index.ts + impl/evidence.ts（证据链）"
+deps: ["bazidiy.calculate_chart","bazidiy.infer_verdict","bazidiy.kb","bazidiy.propose_designs","bazidiy.rules"]
 input: {"type":"object","required":["birth_date","birth_hour","wrist_cm"],"properties":{"birth_date":{"type":"string"},"birth_hour":{"type":"string"},"gender":{"type":"string"},"wrist_cm":{"type":"number"},"bead_ids":{"type":"array","items":{"type":"string"}},"style_ids":{"type":"array","items":{"type":"string"}}}}
 output: {"type":"object","required":["ok","day_master","strength","favorable","unfavorable","designs","evidence"],"properties":{"ok":{"type":"boolean"},"day_master":{"type":"string"},"day_master_element":{"type":"string"},"strength":{"type":"string","enum":["strong","weak"]},"favorable":{"type":"array","items":{"type":"string"}},"unfavorable":{"type":"array","items":{"type":"string"}},"designs":{"type":"array","items":{"type":"object"}},"unavailable_styles":{"type":"array","items":{"type":"object"}},"evidence":{"type":"array","items":{"type":"object"}},"reason":{"type":"string"}}}
 tests: [{"input":{"birth_date":"1990-05-15","birth_hour":"午时","wrist_cm":17},"expect":{"ok":true,"day_master_element":"金"}}]

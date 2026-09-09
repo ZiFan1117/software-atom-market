@@ -28,7 +28,7 @@
 | money.currency_convert | 把金额换算成目标币种 | money | network |  |
 | pdf.extract_tables | 从 PDF 中抽出所有表格 | document | none |  |
 
-## Community · 联邦发现（topic: software-atom）(12)
+## Community · 联邦发现（topic: software-atom）(8)
 
 | id | intent | category | source |
 | --- | --- | --- | --- |
@@ -36,10 +36,6 @@
 | atom.gate.parse | 解析原子文档：YAML frontmatter + 正文（或 legacy JSON manifest）→ meta + body | code | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
 | atom.gate.validate | 机器闸校验原子：字段白名单/枚举/必填 + 正文四节四图硬检 → valid/errors/warnings | code | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
 | atom.registry.search | 在原子指针集里按 query 检索 id+intent+tags+when_to_use（可过滤 layer/category/source） | code | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
-| bazidiy.rules.consistency | 自检全部旺衰×喜忌组合不存在喜忌交集冲突 | other | [ZiFan1117/software-atom-market](https://github.com/ZiFan1117/software-atom-market) |
-| bazidiy.rules.relations | 五行关系访问层：加载生克关系并沿关系取后继（共享工具箱，单一定义） | other | [ZiFan1117/software-atom-market](https://github.com/ZiFan1117/software-atom-market) |
-| bazidiy.rules.strength | 依据月令与日主关系判定日主旺衰（得令/得生） | other | [ZiFan1117/software-atom-market](https://github.com/ZiFan1117/software-atom-market) |
-| bazidiy.rules.verdict_choice | 依据旺衰给出喜用神与忌神选择规则 | other | [ZiFan1117/software-atom-market](https://github.com/ZiFan1117/software-atom-market) |
 | dsh.atom_market.plugin | 把逛/读/验/稿四个商店动作注册进 DSH：分装成可对话的商店插件（框架原子） | ai | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
 | github.fetch_file | 从 GitHub contents API 读取仓库某文件原文（base64 解码为 UTF-8） | code | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
 | store.read_atom | 按指针回源读 manifest/atom 文档并解析（.atom.md 与旧 .atom.json 均支持） | data | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |

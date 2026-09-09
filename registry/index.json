@@ -1,8 +1,333 @@
 {
-  "generated_at": "2026-09-08T13:37:01.238Z",
+  "generated_at": "2026-09-09T03:05:03.343Z",
   "topic": "software-atom",
   "count": 29,
   "atoms": [
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.assistant_preset.atom.md",
+      "id": "bazidiy.assistant_preset",
+      "intent": "定义“手串定制助手”角色：严格流程、硬约束与话术",
+      "layer": "capability",
+      "category": "ai",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "preset",
+        "persona",
+        "agent",
+        "bracelet"
+      ],
+      "when_to_use": "适用：把确定性工具封装成可对话的定制助手；跨会话挂载。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.calculate_chart.atom.md",
+      "id": "bazidiy.calculate_chart",
+      "intent": "把公历生辰与时辰排成四柱八字并统计五行",
+      "layer": "capability",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "bazi",
+        "chart",
+        "pillars",
+        "deterministic"
+      ],
+      "when_to_use": "适用：模型拿到生辰后由确定性工具排盘，禁止 LLM 自行推算干支。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.design_memory.atom.md",
+      "id": "bazidiy.design_memory",
+      "intent": "按会话保存/恢复一次最终设计方案（save/load 两方法）",
+      "layer": "capability",
+      "category": "storage",
+      "side_effects": "db",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "storage",
+        "session",
+        "design",
+        "save",
+        "load"
+      ],
+      "when_to_use": "适用：保存定稿后免重推理即可恢复同会话方案。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.generate_design.atom.md",
+      "id": "bazidiy.generate_design",
+      "intent": "解析并校验完整珠序后定稿最终手串方案",
+      "layer": "capability",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "design",
+        "generate",
+        "validate",
+        "slots"
+      ],
+      "when_to_use": "适用：模型从 propose 的 designs 挑一款后“逐字照抄”珠序定稿出图。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.infer_verdict.atom.md",
+      "id": "bazidiy.infer_verdict",
+      "intent": "判定日主旺衰并推导喜用神与忌神",
+      "layer": "capability",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "wuxing",
+        "strength",
+        "favorable",
+        "verdict"
+      ],
+      "when_to_use": "适用：一切需要喜忌判定的调用（propose_designs 主路径）。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.kb.atom.md",
+      "id": "bazidiy.kb",
+      "intent": "BaziDIY 领域本体与数据：五行/干支/节气 + 珠料×变体=珠 + 款式槽位（Apache Ossie 合并篇）",
+      "layer": "primitive",
+      "category": "data",
+      "side_effects": "none",
+      "version": "0.2.0",
+      "verified": false,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "ontology",
+        "kb",
+        "wuxing",
+        "bead",
+        "style",
+        "ossie"
+      ],
+      "when_to_use": "全领域概念/关系/约束与实例数据唯一源（ontology.yaml + semantic 契约 + SQLite）；其它原子经绑定/契约引用"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.parse_slots.atom.md",
+      "id": "bazidiy.parse_slots",
+      "intent": "把“珠名:直径,珠名:直径”珠序串解析消歧为槽位序列",
+      "layer": "capability",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "parse",
+        "slots",
+        "beads",
+        "disambiguate"
+      ],
+      "when_to_use": "适用：把 LLM 照抄的珠序转成可渲染/可保存槽位。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.propose_designs.atom.md",
+      "id": "bazidiy.propose_designs",
+      "intent": "一链出方案：旺衰→喜忌→筛珠→款式求解→给喜忌珠与可选方案",
+      "layer": "capability",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "propose",
+        "design",
+        "bracelet",
+        "one-shot"
+      ],
+      "when_to_use": "适用：模型主流程的“提方案”一步；换款/加限定也走这里（不重排盘）。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.rules.consistency.atom.md",
+      "id": "bazidiy.rules.consistency",
+      "intent": "自检全部旺衰×喜忌组合不存在喜忌交集冲突",
+      "layer": "primitive",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "rule",
+        "consistency",
+        "invariant"
+      ],
+      "when_to_use": "适用：改喜忌/旺衰规则数据后回归；服务启动自检。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.rules.naming.atom.md",
+      "id": "bazidiy.rules.naming",
+      "intent": "定义珠子命名规则：必须全称、禁止缩写、同名变体优先非隔片",
+      "layer": "primitive",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "rule",
+        "naming",
+        "bead",
+        "canonical"
+      ],
+      "when_to_use": "适用：解析珠序前校验与消歧，杜绝“白玉/玛瑙”等编造名与缩写。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.rules.relations.atom.md",
+      "id": "bazidiy.rules.relations",
+      "intent": "五行关系访问层：加载生克关系并沿关系取后继（共享工具箱，单一定义）",
+      "layer": "primitive",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "rule",
+        "relations",
+        "wuxing",
+        "shared"
+      ],
+      "when_to_use": "被 strength/verdict_choice/consistency 等规则原子复用的五行关系遍历；避免各自复制实现"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.rules.strength.atom.md",
+      "id": "bazidiy.rules.strength",
+      "intent": "依据月令与日主关系判定日主旺衰（得令/得生）",
+      "layer": "primitive",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "rule",
+        "wuxing",
+        "strength",
+        "deterministic"
+      ],
+      "when_to_use": "适用：在喜忌选择之前判定日主强弱；判据变更只改规则数据。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.rules.verdict_choice.atom.md",
+      "id": "bazidiy.rules.verdict_choice",
+      "intent": "依据旺衰给出喜用神与忌神选择规则",
+      "layer": "primitive",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "rule",
+        "wuxing",
+        "favorable",
+        "unfavorable"
+      ],
+      "when_to_use": "适用：给出喜用/忌神五行集合供筛珠。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.select_beads.atom.md",
+      "id": "bazidiy.select_beads",
+      "intent": "按喜忌从珠子库筛出 suitable 与 unsuitable（隔片豁免）",
+      "layer": "capability",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "bead",
+        "select",
+        "favorable",
+        "bracelet"
+      ],
+      "when_to_use": "适用：得到喜忌后给出可/不可用珠清单；作为求解的输入。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.solve_styles.atom.md",
+      "id": "bazidiy.solve_styles",
+      "intent": "按款式槽位约束枚举组合，求腕围下可行方案与不可行款式原因",
+      "layer": "capability",
+      "category": "other",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": true,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "solver",
+        "style",
+        "constraint",
+        "enumeration"
+      ],
+      "when_to_use": "适用：给可用珠+腕围产出一组可选款式方案。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.ui.bead_editor.atom.md",
+      "id": "bazidiy.ui.bead_editor",
+      "intent": "可视化逐颗换珠与调直径的编辑器",
+      "layer": "capability",
+      "category": "web",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "ui",
+        "editor",
+        "bead",
+        "interactive"
+      ],
+      "when_to_use": "适用：用户想换某颗珠/调直径时给出可点选编辑。"
+    },
+    {
+      "repo": "ZiFan1117/software-atom-market",
+      "path": "atoms/bazidiy.ui.svg_render.atom.md",
+      "id": "bazidiy.ui.svg_render",
+      "intent": "把定稿槽位序列渲染成手串 SVG 卡片",
+      "layer": "capability",
+      "category": "web",
+      "side_effects": "none",
+      "version": "0.1.0",
+      "verified": false,
+      "updated_at": "2026-09-08T14:29:22Z",
+      "tags": [
+        "ui",
+        "svg",
+        "bracelet",
+        "render"
+      ],
+      "when_to_use": "适用：向用户展示成品手串图；工具结果 render 阶段。"
+    },
     {
       "repo": "ZiFan1117/software-atom-market",
       "path": "atoms/data.csv_to_json.atom.md",
@@ -13,7 +338,7 @@
       "side_effects": "none",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T14:29:22Z",
       "tags": [
         "csv",
         "json",
@@ -31,7 +356,7 @@
       "side_effects": "email",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T14:29:22Z",
       "tags": [
         "mail",
         "email",
@@ -49,7 +374,7 @@
       "side_effects": "network",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T14:29:22Z",
       "tags": [
         "money",
         "currency",
@@ -67,338 +392,13 @@
       "side_effects": "none",
       "version": "1.2.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T14:29:22Z",
       "tags": [
         "pdf",
         "table",
         "parse"
       ],
       "when_to_use": "报表、账单、论文数据表等文本层完整的版式化表格。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.assistant_preset.atom.md",
-      "id": "bazidiy.assistant_preset",
-      "intent": "定义“手串定制助手”角色：严格流程、硬约束与话术",
-      "layer": "capability",
-      "category": "ai",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "preset",
-        "persona",
-        "agent",
-        "bracelet"
-      ],
-      "when_to_use": "适用：把确定性工具封装成可对话的定制助手；跨会话挂载。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.calculate_chart.atom.md",
-      "id": "bazidiy.calculate_chart",
-      "intent": "把公历生辰与时辰排成四柱八字并统计五行",
-      "layer": "capability",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "bazi",
-        "chart",
-        "pillars",
-        "deterministic"
-      ],
-      "when_to_use": "适用：模型拿到生辰后由确定性工具排盘，禁止 LLM 自行推算干支。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.design_memory.atom.md",
-      "id": "bazidiy.design_memory",
-      "intent": "按会话保存/恢复一次最终设计方案（save/load 两方法）",
-      "layer": "capability",
-      "category": "storage",
-      "side_effects": "db",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "storage",
-        "session",
-        "design",
-        "save",
-        "load"
-      ],
-      "when_to_use": "适用：保存定稿后免重推理即可恢复同会话方案。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.generate_design.atom.md",
-      "id": "bazidiy.generate_design",
-      "intent": "解析并校验完整珠序后定稿最终手串方案",
-      "layer": "capability",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "design",
-        "generate",
-        "validate",
-        "slots"
-      ],
-      "when_to_use": "适用：模型从 propose 的 designs 挑一款后“逐字照抄”珠序定稿出图。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.infer_verdict.atom.md",
-      "id": "bazidiy.infer_verdict",
-      "intent": "判定日主旺衰并推导喜用神与忌神",
-      "layer": "capability",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "wuxing",
-        "strength",
-        "favorable",
-        "verdict"
-      ],
-      "when_to_use": "适用：一切需要喜忌判定的调用（propose_designs 主路径）。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.kb.atom.md",
-      "id": "bazidiy.kb",
-      "intent": "BaziDIY 领域本体与数据：五行/干支/节气 + 珠料×变体=珠 + 款式槽位（Apache Ossie 合并篇）",
-      "layer": "primitive",
-      "category": "data",
-      "side_effects": "none",
-      "version": "0.2.0",
-      "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "ontology",
-        "kb",
-        "wuxing",
-        "bead",
-        "style",
-        "ossie"
-      ],
-      "when_to_use": "全领域概念/关系/约束与实例数据唯一源（ontology.yaml + semantic 契约 + SQLite）；其它原子经绑定/契约引用"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.parse_slots.atom.md",
-      "id": "bazidiy.parse_slots",
-      "intent": "把“珠名:直径,珠名:直径”珠序串解析消歧为槽位序列",
-      "layer": "capability",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "parse",
-        "slots",
-        "beads",
-        "disambiguate"
-      ],
-      "when_to_use": "适用：把 LLM 照抄的珠序转成可渲染/可保存槽位。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.propose_designs.atom.md",
-      "id": "bazidiy.propose_designs",
-      "intent": "一链出方案：旺衰→喜忌→筛珠→款式求解→给喜忌珠与可选方案",
-      "layer": "capability",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "propose",
-        "design",
-        "bracelet",
-        "one-shot"
-      ],
-      "when_to_use": "适用：模型主流程的“提方案”一步；换款/加限定也走这里（不重排盘）。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.rules.consistency.atom.md",
-      "id": "bazidiy.rules.consistency",
-      "intent": "自检全部旺衰×喜忌组合不存在喜忌交集冲突",
-      "layer": "primitive",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "rule",
-        "consistency",
-        "invariant"
-      ],
-      "when_to_use": "适用：改喜忌/旺衰规则数据后回归；服务启动自检。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.rules.naming.atom.md",
-      "id": "bazidiy.rules.naming",
-      "intent": "定义珠子命名规则：必须全称、禁止缩写、同名变体优先非隔片",
-      "layer": "primitive",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "rule",
-        "naming",
-        "bead",
-        "canonical"
-      ],
-      "when_to_use": "适用：解析珠序前校验与消歧，杜绝“白玉/玛瑙”等编造名与缩写。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.rules.relations.atom.md",
-      "id": "bazidiy.rules.relations",
-      "intent": "五行关系访问层：加载生克关系并沿关系取后继（共享工具箱，单一定义）",
-      "layer": "primitive",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "rule",
-        "relations",
-        "wuxing",
-        "shared"
-      ],
-      "when_to_use": "被 strength/verdict_choice/consistency 等规则原子复用的五行关系遍历；避免各自复制实现"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.rules.strength.atom.md",
-      "id": "bazidiy.rules.strength",
-      "intent": "依据月令与日主关系判定日主旺衰（得令/得生）",
-      "layer": "primitive",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "rule",
-        "wuxing",
-        "strength",
-        "deterministic"
-      ],
-      "when_to_use": "适用：在喜忌选择之前判定日主强弱；判据变更只改规则数据。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.rules.verdict_choice.atom.md",
-      "id": "bazidiy.rules.verdict_choice",
-      "intent": "依据旺衰给出喜用神与忌神选择规则",
-      "layer": "primitive",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "rule",
-        "wuxing",
-        "favorable",
-        "unfavorable"
-      ],
-      "when_to_use": "适用：给出喜用/忌神五行集合供筛珠。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.select_beads.atom.md",
-      "id": "bazidiy.select_beads",
-      "intent": "按喜忌从珠子库筛出 suitable 与 unsuitable（隔片豁免）",
-      "layer": "capability",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "bead",
-        "select",
-        "favorable",
-        "bracelet"
-      ],
-      "when_to_use": "适用：得到喜忌后给出可/不可用珠清单；作为求解的输入。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.solve_styles.atom.md",
-      "id": "bazidiy.solve_styles",
-      "intent": "按款式槽位约束枚举组合，求腕围下可行方案与不可行款式原因",
-      "layer": "capability",
-      "category": "other",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": true,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "solver",
-        "style",
-        "constraint",
-        "enumeration"
-      ],
-      "when_to_use": "适用：给可用珠+腕围产出一组可选款式方案。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.ui.bead_editor.atom.md",
-      "id": "bazidiy.ui.bead_editor",
-      "intent": "可视化逐颗换珠与调直径的编辑器",
-      "layer": "capability",
-      "category": "web",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "ui",
-        "editor",
-        "bead",
-        "interactive"
-      ],
-      "when_to_use": "适用：用户想换某颗珠/调直径时给出可点选编辑。"
-    },
-    {
-      "repo": "ZiFan1117/bazidiy",
-      "path": "atoms/bazidiy.ui.svg_render.atom.md",
-      "id": "bazidiy.ui.svg_render",
-      "intent": "把定稿槽位序列渲染成手串 SVG 卡片",
-      "layer": "capability",
-      "category": "web",
-      "side_effects": "none",
-      "version": "0.1.0",
-      "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
-      "tags": [
-        "ui",
-        "svg",
-        "bracelet",
-        "render"
-      ],
-      "when_to_use": "适用：向用户展示成品手串图；工具结果 render 阶段。"
     },
     {
       "repo": "ZiFan1117/dsh-atom-market",
@@ -410,7 +410,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T13:07:31Z",
       "tags": [
         "atom",
         "draft",
@@ -428,7 +428,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T13:07:31Z",
       "tags": [
         "atom",
         "parse",
@@ -447,7 +447,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T13:07:31Z",
       "tags": [
         "atom",
         "validate",
@@ -466,7 +466,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T13:07:31Z",
       "tags": [
         "atom",
         "search",
@@ -485,7 +485,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T13:07:31Z",
       "tags": [
         "plugin",
         "dsh",
@@ -504,7 +504,7 @@
       "side_effects": "network",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T13:07:31Z",
       "tags": [
         "github",
         "fetch",
@@ -523,7 +523,7 @@
       "side_effects": "network",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T13:07:31Z",
       "tags": [
         "store",
         "atom",
@@ -542,7 +542,7 @@
       "side_effects": "network",
       "version": "0.1.0",
       "verified": false,
-      "updated_at": "2026-09-08T13:37:01.238Z",
+      "updated_at": "2026-09-08T13:07:31Z",
       "tags": [
         "store",
         "registry",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T03:05:01.870Z",
+  "generated_at": "2026-09-11T03:05:05.577Z",
   "topic": "software-atom",
   "count": 29,
   "atoms": [
@@ -164,7 +164,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "preset",
         "persona",
@@ -183,7 +183,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "bazi",
         "chart",
@@ -202,7 +202,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "derive",
         "pipeline",
@@ -222,7 +222,7 @@
       "side_effects": "db",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "storage",
         "session",
@@ -242,7 +242,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "design",
         "generate",
@@ -261,7 +261,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "wuxing",
         "strength",
@@ -280,7 +280,7 @@
       "side_effects": "none",
       "version": "0.2.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "ontology",
         "kb",
@@ -301,7 +301,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "parse",
         "slots",
@@ -320,7 +320,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "plugin",
         "framework",
@@ -340,7 +340,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "propose",
         "design",
@@ -359,7 +359,7 @@
       "side_effects": "none",
       "version": "0.2.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "rule",
         "wuxing",
@@ -381,7 +381,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "rule",
         "naming",
@@ -400,7 +400,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "bead",
         "select",
@@ -419,7 +419,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "solver",
         "style",
@@ -438,7 +438,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "style",
         "constraint",
@@ -458,7 +458,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "ui",
         "editor",
@@ -477,7 +477,7 @@
       "side_effects": "none",
       "version": "0.1.0",
       "verified": true,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "ui",
         "svg",
@@ -496,7 +496,7 @@
       "side_effects": "none",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "csv",
         "json",
@@ -514,7 +514,7 @@
       "side_effects": "email",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "mail",
         "email",
@@ -532,7 +532,7 @@
       "side_effects": "network",
       "version": "1.0.0",
       "verified": false,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "money",
         "currency",
@@ -550,7 +550,7 @@
       "side_effects": "none",
       "version": "1.2.0",
       "verified": false,
-      "updated_at": "2026-09-09T15:04:36Z",
+      "updated_at": "2026-09-10T03:05:03Z",
       "tags": [
         "pdf",
         "table",

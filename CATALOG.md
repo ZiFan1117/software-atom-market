@@ -28,15 +28,8 @@
 | money.currency_convert | 把金额换算成目标币种 | money | network |  |
 | pdf.extract_tables | 从 PDF 中抽出所有表格 | document | none |  |
 
-## Community · 联邦发现（topic: software-atom）(8)
+## Community · 联邦发现（topic: software-atom）(0)
 
 | id | intent | category | source |
 | --- | --- | --- | --- |
-| atom.draft | 由一句意图生成 atom 文档骨架（含空四节正文占位） | code | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
-| atom.gate.parse | 解析原子文档：YAML frontmatter + 正文（或 legacy JSON manifest）→ meta + body | code | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
-| atom.gate.validate | 机器闸校验原子：字段白名单/枚举/必填 + 正文四节四图硬检 → valid/errors/warnings | code | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
-| atom.registry.search | 在原子指针集里按 query 检索 id+intent+tags+when_to_use（可过滤 layer/category/source） | code | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
-| dsh.atom_market.plugin | 把逛/读/验/稿四个商店动作注册进 DSH：分装成可对话的商店插件（框架原子） | ai | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
-| github.fetch_file | 从 GitHub contents API 读取仓库某文件原文（base64 解码为 UTF-8） | code | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
-| store.read_atom | 按指针回源读 manifest/atom 文档并解析（.atom.md 与旧 .atom.json 均支持） | data | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
-| store.read_index | 拉取并缓存 registry/index.json 指针集（或本地 DSH_ATOM_STORE_DIR atoms 目录） | data | [ZiFan1117/dsh-atom-market](https://github.com/ZiFan1117/dsh-atom-market) |
+
